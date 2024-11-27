@@ -26,6 +26,7 @@ class ClickerBot:
         self.status = self.get_status()
         self.game_name = 'com.fun.lastwar.gp'
         self.click_thread = None
+        self.start()
 
     def get_server_time(self):
         UTC = datetime.datetime.now(datetime.timezone.utc)
@@ -114,7 +115,7 @@ class ClickerBot:
     def start(self, job_list: list[Job] = [None]):
         print("Starting ClickerBot...")
         print(f"Running: {self.running}")
-        print(f"Tread exists: {self.click_thread is not None}")
+        print(f"Thread exists: {self.click_thread is not None}")
         print(f"""Thread is alive: {
               self.click_thread is not None
               and self.click_thread.is_alive()}""")
@@ -457,8 +458,6 @@ def load_job_logic(logic_file: str):
 def main():
     logic = load_job_logic(TEST_JSON)
     bot = ClickerBot(logic)
-    # bot.start()
-    bot.status
 
     while True:
         time.sleep(1)
