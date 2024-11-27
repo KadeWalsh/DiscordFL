@@ -3,7 +3,7 @@ import json
 from clickerBot import ClickerBot
 from discordBot import DiscordBot
 
-DEFAULT_JSON = "working.json"
+DEFAULT_JSON = "actual.json"
 
 
 class MainBot:
