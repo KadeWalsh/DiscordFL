@@ -143,7 +143,9 @@ class ClickerBot:
         self.load_dismiss_buff_logic()
 
     def execute_event(self, event: Event) -> bool:
-        if event.run_last > self.get_server_time() - datetime.timedelta(hours=event.run_interval):
+        if (event.run_last is not None and
+                event.run_last > self.get_server_time()
+                - datetime.timedelta(hours=event.run_interval)):
             return False
 
         event_executed = False
@@ -258,7 +260,7 @@ class ClickerBot:
         status_dict['game running'] = self.ADB.is_game_running()
 
         status = "\n".join([f"{key.upper()} : {str(value).upper()}" for key,
-                           value in status_dict.items()])
+                            value in status_dict.items()])
 
         return status
 

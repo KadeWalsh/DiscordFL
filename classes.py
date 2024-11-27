@@ -73,9 +73,10 @@ class Event(CommonPrintFormat):
             self.action = Action(event['action'])
         if event.get('events') is not None:
             self.events = [Event(event) for event in event['events']]
-        self.run_last = datetime.datetime.now(
-        ) - datetime.timedelta(event.get('run_last') or 0)
-        self.run_interval = event.get('run_interval') or 0
+        self.run_interval = event.get('run_interval') or None
+        if self.run_interval is not None:
+            self.run_last = datetime.datetime.now(
+            ) - datetime.timedelta(event.get('run_last'))
 
 
 class Job(CommonPrintFormat):
