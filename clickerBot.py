@@ -143,7 +143,7 @@ class ClickerBot:
         self.load_dismiss_buff_logic()
 
     def execute_event(self, event: Event) -> bool:
-        if event.run_last > self.get_server_time() - self.run_interval:
+        if event.run_last > self.get_server_time() - event.run_interval:
             return False
 
         event_executed = False
