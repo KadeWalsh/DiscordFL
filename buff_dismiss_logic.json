@@ -1,0 +1,844 @@
+{
+    "buffs": [
+        {
+            "name": "INTERIOR",
+            "description": "Remove current Secretary of Interior",
+            "events": [
+                {
+                    "description": "Open profile window",
+                    "trigger": null,
+                    "action": {
+                        "description": "Click profile picture",
+                        "coords": [
+                            85,
+                            85
+                        ],
+                        "repeat": 1,
+                        "delay": 1,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": [
+                        {
+                            "description": "Check for new loves popup",
+                            "trigger": {
+                                "area": [
+                                    345,
+                                    1405,
+                                    730,
+                                    1555
+                                ],
+                                "color": [
+                                    [
+                                        62,
+                                        200,
+                                        192
+                                    ],
+                                    [
+                                        121,
+                                        255,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 30000,
+                                "type": "static",
+                                "qty": "single"
+                            },
+                            "action": {
+                                "description": "dismiss new loves popup",
+                                "coords": [
+                                    0,
+                                    0
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "key",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "Open buffs overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click server # button",
+                                "coords": [
+                                    820,
+                                    1315
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": [
+                                {
+                                    "description": "Open Secretary of Interior Buff window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click Secretary of Interior",
+                                        "coords": [
+                                            865,
+                                            1340
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 2,
+                                        "action_type": "click",
+                                        "coord_type": "static",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": [
+                                        {
+                                            "description": "Dissmiss current buff holder",
+                                            "trigger": null,
+                                            "action": {
+                                                "description": "Click DISMISS button",
+                                                "coords": [
+                                                    390,
+                                                    1635
+                                                ],
+                                                "repeat": 1,
+                                                "delay": 1,
+                                                "action_type": "click",
+                                                "coord_type": "static",
+                                                "click_delay": 0.2
+                                            },
+                                            "events": [
+                                                {
+                                                    "description": "Confirm dismissal",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click CONFIRM button",
+                                                        "coords": [
+                                                            375,
+                                                            1020
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "coord_type": "static",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Exit buff overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "click BACK ARROW on buff overview window",
+                                "coords": [
+                                    65,
+                                    1825
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click/drag",
+                                "coord_type": "static/relative",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        }
+                    ]
+                },
+                {
+                    "description": "Exit PROFILE window",
+                    "trigger": null,
+                    "action": {
+                        "description": "description of action",
+                        "coords": [
+                            985,
+                            230
+                        ],
+                        "repeat": 1,
+                        "delay": 2,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": null
+                }
+            ]
+        },
+        {
+            "name": "SCIENCE",
+            "description": "Remove current Secretary of Science",
+            "events": [
+                {
+                    "description": "Open profile window",
+                    "trigger": null,
+                    "action": {
+                        "description": "Click profile picture",
+                        "coords": [
+                            85,
+                            85
+                        ],
+                        "repeat": 1,
+                        "delay": 1,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": [
+                        {
+                            "description": "Check for new loves popup",
+                            "trigger": {
+                                "area": [
+                                    345,
+                                    1405,
+                                    730,
+                                    1555
+                                ],
+                                "color": [
+                                    [
+                                        62,
+                                        200,
+                                        192
+                                    ],
+                                    [
+                                        121,
+                                        255,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 30000,
+                                "type": "static",
+                                "qty": "single"
+                            },
+                            "action": {
+                                "description": "dismiss new loves popup",
+                                "coords": [
+                                    0,
+                                    0
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "key",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "Open buffs overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click server # button",
+                                "coords": [
+                                    820,
+                                    1315
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": [
+                                {
+                                    "description": "Open Secretary of Interior Buff window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click Secretary of Interior",
+                                        "coords": [
+                                            540,
+                                            1350
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 2,
+                                        "action_type": "click",
+                                        "coord_type": "static",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": [
+                                        {
+                                            "description": "Dissmiss current buff holder",
+                                            "trigger": null,
+                                            "action": {
+                                                "description": "Click DISMISS button",
+                                                "coords": [
+                                                    390,
+                                                    1635
+                                                ],
+                                                "repeat": 1,
+                                                "delay": 1,
+                                                "action_type": "click",
+                                                "coord_type": "static",
+                                                "click_delay": 0.2
+                                            },
+                                            "events": [
+                                                {
+                                                    "description": "Confirm dismissal",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click CONFIRM button",
+                                                        "coords": [
+                                                            375,
+                                                            1020
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "coord_type": "static",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Exit buff overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "click BACK ARROW on buff overview window",
+                                "coords": [
+                                    65,
+                                    1825
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click/drag",
+                                "coord_type": "static/relative",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        }
+                    ]
+                },
+                {
+                    "description": "Exit PROFILE window",
+                    "trigger": null,
+                    "action": {
+                        "description": "description of action",
+                        "coords": [
+                            985,
+                            230
+                        ],
+                        "repeat": 1,
+                        "delay": 2,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": null
+                }
+            ]
+        },
+        {
+            "name": "DEVELOPMENT",
+            "description": "Remove current Secretary of Development",
+            "events": [
+                {
+                    "description": "Open profile window",
+                    "trigger": null,
+                    "action": {
+                        "description": "Click profile picture",
+                        "coords": [
+                            85,
+                            85
+                        ],
+                        "repeat": 1,
+                        "delay": 1,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": [
+                        {
+                            "description": "Check for new loves popup",
+                            "trigger": {
+                                "area": [
+                                    345,
+                                    1405,
+                                    730,
+                                    1555
+                                ],
+                                "color": [
+                                    [
+                                        62,
+                                        200,
+                                        192
+                                    ],
+                                    [
+                                        121,
+                                        255,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 30000,
+                                "type": "static",
+                                "qty": "single"
+                            },
+                            "action": {
+                                "description": "dismiss new loves popup",
+                                "coords": [
+                                    0,
+                                    0
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "key",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "Open buffs overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click server # button",
+                                "coords": [
+                                    820,
+                                    1315
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": [
+                                {
+                                    "description": "Open Secretary of Interior Buff window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click Secretary of Interior",
+                                        "coords": [
+                                            220,
+                                            1340
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 2,
+                                        "action_type": "click",
+                                        "coord_type": "static",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": [
+                                        {
+                                            "description": "Dissmiss current buff holder",
+                                            "trigger": null,
+                                            "action": {
+                                                "description": "Click DISMISS button",
+                                                "coords": [
+                                                    390,
+                                                    1635
+                                                ],
+                                                "repeat": 1,
+                                                "delay": 1,
+                                                "action_type": "click",
+                                                "coord_type": "static",
+                                                "click_delay": 0.2
+                                            },
+                                            "events": [
+                                                {
+                                                    "description": "Confirm dismissal",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click CONFIRM button",
+                                                        "coords": [
+                                                            375,
+                                                            1020
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "coord_type": "static",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Exit buff overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "click BACK ARROW on buff overview window",
+                                "coords": [
+                                    65,
+                                    1825
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click/drag",
+                                "coord_type": "static/relative",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        }
+                    ]
+                },
+                {
+                    "description": "Exit PROFILE window",
+                    "trigger": null,
+                    "action": {
+                        "description": "description of action",
+                        "coords": [
+                            985,
+                            230
+                        ],
+                        "repeat": 1,
+                        "delay": 2,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": null
+                }
+            ]
+        },
+        {
+            "name": "SECURITY",
+            "description": "Remove current Secretary of Security",
+            "events": [
+                {
+                    "description": "Open profile window",
+                    "trigger": null,
+                    "action": {
+                        "description": "Click profile picture",
+                        "coords": [
+                            85,
+                            85
+                        ],
+                        "repeat": 1,
+                        "delay": 1,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": [
+                        {
+                            "description": "Check for new loves popup",
+                            "trigger": {
+                                "area": [
+                                    345,
+                                    1405,
+                                    730,
+                                    1555
+                                ],
+                                "color": [
+                                    [
+                                        62,
+                                        200,
+                                        192
+                                    ],
+                                    [
+                                        121,
+                                        255,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 30000,
+                                "type": "static",
+                                "qty": "single"
+                            },
+                            "action": {
+                                "description": "dismiss new loves popup",
+                                "coords": [
+                                    0,
+                                    0
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "key",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "Open buffs overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click server # button",
+                                "coords": [
+                                    820,
+                                    1315
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": [
+                                {
+                                    "description": "Open Secretary of Security Buff window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click Secretary of Security",
+                                        "coords": [
+                                            865,
+                                            930
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 2,
+                                        "action_type": "click",
+                                        "coord_type": "static",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": [
+                                        {
+                                            "description": "Dissmiss current buff holder",
+                                            "trigger": null,
+                                            "action": {
+                                                "description": "Click DISMISS button",
+                                                "coords": [
+                                                    390,
+                                                    1635
+                                                ],
+                                                "repeat": 1,
+                                                "delay": 1,
+                                                "action_type": "click",
+                                                "coord_type": "static",
+                                                "click_delay": 0.2
+                                            },
+                                            "events": [
+                                                {
+                                                    "description": "Confirm dismissal",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click CONFIRM button",
+                                                        "coords": [
+                                                            375,
+                                                            1020
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "coord_type": "static",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Exit buff overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "click BACK ARROW on buff overview window",
+                                "coords": [
+                                    65,
+                                    1825
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click/drag",
+                                "coord_type": "static/relative",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        }
+                    ]
+                },
+                {
+                    "description": "Exit PROFILE window",
+                    "trigger": null,
+                    "action": {
+                        "description": "description of action",
+                        "coords": [
+                            985,
+                            230
+                        ],
+                        "repeat": 1,
+                        "delay": 2,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": null
+                }
+            ]
+        },
+        {
+            "name": "STRATEGY",
+            "description": "Remove current Secretary of STRATEGY",
+            "events": [
+                {
+                    "description": "Open profile window",
+                    "trigger": null,
+                    "action": {
+                        "description": "Click profile picture",
+                        "coords": [
+                            85,
+                            85
+                        ],
+                        "repeat": 1,
+                        "delay": 1,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": [
+                        {
+                            "description": "Check for new loves popup",
+                            "trigger": {
+                                "area": [
+                                    345,
+                                    1405,
+                                    730,
+                                    1555
+                                ],
+                                "color": [
+                                    [
+                                        62,
+                                        200,
+                                        192
+                                    ],
+                                    [
+                                        121,
+                                        255,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 30000,
+                                "type": "static",
+                                "qty": "single"
+                            },
+                            "action": {
+                                "description": "dismiss new loves popup",
+                                "coords": [
+                                    0,
+                                    0
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "key",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "Open buffs overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click server # button",
+                                "coords": [
+                                    820,
+                                    1315
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click",
+                                "coord_type": "static",
+                                "click_delay": 0.2
+                            },
+                            "events": [
+                                {
+                                    "description": "Open Secretary of Strategy Buff window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click Secretary of Strategy",
+                                        "coords": [
+                                            540,
+                                            930
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 2,
+                                        "action_type": "click",
+                                        "coord_type": "static",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": [
+                                        {
+                                            "description": "Dissmiss current buff holder",
+                                            "trigger": null,
+                                            "action": {
+                                                "description": "Click DISMISS button",
+                                                "coords": [
+                                                    390,
+                                                    1635
+                                                ],
+                                                "repeat": 1,
+                                                "delay": 1,
+                                                "action_type": "click",
+                                                "coord_type": "static",
+                                                "click_delay": 0.2
+                                            },
+                                            "events": [
+                                                {
+                                                    "description": "Confirm dismissal",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click CONFIRM button",
+                                                        "coords": [
+                                                            375,
+                                                            1020
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "coord_type": "static",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "description": "Exit buff overview",
+                            "trigger": null,
+                            "action": {
+                                "description": "click BACK ARROW on buff overview window",
+                                "coords": [
+                                    65,
+                                    1825
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click/drag",
+                                "coord_type": "static/relative",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        }
+                    ]
+                },
+                {
+                    "description": "Exit PROFILE window",
+                    "trigger": null,
+                    "action": {
+                        "description": "description of action",
+                        "coords": [
+                            985,
+                            230
+                        ],
+                        "repeat": 1,
+                        "delay": 2,
+                        "action_type": "click",
+                        "coord_type": "static",
+                        "click_delay": 0.2
+                    },
+                    "events": null
+                }
+            ]
+        }
+    ]
+}

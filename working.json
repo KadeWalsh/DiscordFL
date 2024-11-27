@@ -1,0 +1,1475 @@
+{
+    "settings": {
+        "discord": {
+            "TOKEN": "MTI5OTM4NjQwNTQxNTQyNDAyMA.GdLesF.iyCYnUcEttKzlgEZ1fumdsnMECT3Yy4nANZ_wY"
+        },
+        "clicker": {
+            "settings": {
+                "host": "192.168.0.198",
+                "port": 5655
+            },
+            "time_offset": -2,
+            "jobs": [
+                {
+                    "name": "RESET",
+                    "description": "Close any open windows",
+                    "skip": false,
+                    "events": [
+                        {
+                            "description": "Click back button",
+                            "trigger": null,
+                            "action": {
+                                "description": "send BACK BUTTON command to device",
+                                "coords": [
+                                    0,
+                                    0
+                                ],
+                                "repeat": 8,
+                                "delay": 1,
+                                "action_type": "key",
+                                "click_delay": 0.3
+                            },
+                            "events": [
+                                {
+                                    "description": "Check for exit confirmation window",
+                                    "trigger": {
+                                        "area": [
+                                            572,
+                                            948,
+                                            860,
+                                            1070
+                                        ],
+                                        "color": [
+                                            [
+                                                62,
+                                                200,
+                                                192
+                                            ],
+                                            [
+                                                121,
+                                                255,
+                                                255
+                                            ]
+                                        ],
+                                        "min_size": 30000,
+                                        "type": "static",
+                                        "qty": "single"
+                                    },
+                                    "action": {
+                                        "description": "send BACK BUTTON one more time",
+                                        "coords": [
+                                            0,
+                                            0
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 1,
+                                        "action_type": "key",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "FIRST LADY",
+                    "description": "Events used to approve buff applications",
+                    "skip": false,
+                    "events": [
+                        {
+                            "description": "Check for indicator on profile picture",
+                            "trigger": {
+                                "area": [
+                                    20,
+                                    0,
+                                    53,
+                                    43
+                                ],
+                                "color": [
+                                    [
+                                        0,
+                                        183,
+                                        230
+                                    ],
+                                    [
+                                        10,
+                                        255,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 200,
+                                "type": "static",
+                                "qty": "single",
+                                "ref_img": null,
+                                "override": false
+                            },
+                            "action": {
+                                "description": "open profile window",
+                                "coords": [
+                                    85,
+                                    85
+                                ],
+                                "repeat": 1,
+                                "delay": 1,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": [
+                                {
+                                    "description": "Check for new loves popup",
+                                    "trigger": {
+                                        "area": [
+                                            345,
+                                            1405,
+                                            730,
+                                            1555
+                                        ],
+                                        "color": [
+                                            [
+                                                62,
+                                                200,
+                                                192
+                                            ],
+                                            [
+                                                121,
+                                                255,
+                                                255
+                                            ]
+                                        ],
+                                        "min_size": 30000,
+                                        "type": "static",
+                                        "qty": "single"
+                                    },
+                                    "action": {
+                                        "description": "dismiss new loves popup",
+                                        "coords": [
+                                            0,
+                                            0
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 1,
+                                        "action_type": "key",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                },
+                                {
+                                    "description": "open buffs window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click SERVER # button",
+                                        "coords": [
+                                            820,
+                                            1315
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 1,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": [
+                                        {
+                                            "description": "Check for FL applications",
+                                            "trigger": {
+                                                "area": [
+                                                    75,
+                                                    710,
+                                                    110,
+                                                    760
+                                                ],
+                                                "color": [
+                                                    [
+                                                        0,
+                                                        183,
+                                                        230
+                                                    ],
+                                                    [
+                                                        10,
+                                                        255,
+                                                        255
+                                                    ]
+                                                ],
+                                                "min_size": 200,
+                                                "override": false
+                                            },
+                                            "action": {
+                                                "description": "click on FL buff",
+                                                "coords": [
+                                                    130,
+                                                    170
+                                                ],
+                                                "repeat": 1,
+                                                "delay": 1,
+                                                "action_type": "click",
+                                                "click_delay": 0.2
+                                            },
+                                            "events": [
+                                                {
+                                                    "description": "open FL applicant list",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click LIST button",
+                                                        "coords": [
+                                                            940,
+                                                            1615
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": []
+                                                },
+                                                {
+                                                    "description": "DENY first applicant",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click DENY button",
+                                                        "coords": [
+                                                            920,
+                                                            435
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 2,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": [
+                                                        {
+                                                            "description": "Prevent popup next time",
+                                                            "trigger": null,
+                                                            "action": {
+                                                                "description": "click 'Don't show me today'",
+                                                                "coords": [
+                                                                    380,
+                                                                    1040
+                                                                ],
+                                                                "repeat": 1,
+                                                                "delay": 0.5,
+                                                                "action_type": "click",
+                                                                "click_delay": 0.2
+                                                            },
+                                                            "events": null
+                                                        },
+                                                        {
+                                                            "description": "Deny application",
+                                                            "trigger": null,
+                                                            "action": {
+                                                                "description": "click CONFIRM",
+                                                                "coords": [
+                                                                    740,
+                                                                    1220
+                                                                ],
+                                                                "repeat": 1,
+                                                                "delay": 0.5,
+                                                                "action_type": "click",
+                                                                "click_delay": 0.2
+                                                            },
+                                                            "events": null
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "description": "Exit application list",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click 'X' to exit window'",
+                                                        "coords": [
+                                                            995,
+                                                            195
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "Exit FL buff window",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click 'X' to exit window'",
+                                                        "coords": [
+                                                            995,
+                                                            195
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "description": "Check for STRATEGY or SECURITY buff applications",
+                                            "trigger": {
+                                                "area": [
+                                                    395,
+                                                    710,
+                                                    760,
+                                                    760
+                                                ],
+                                                "color": [
+                                                    [
+                                                        0,
+                                                        183,
+                                                        230
+                                                    ],
+                                                    [
+                                                        10,
+                                                        255,
+                                                        255
+                                                    ]
+                                                ],
+                                                "min_size": 200,
+                                                "override": false
+                                            },
+                                            "action": {
+                                                "description": "open UPPER ROW buff",
+                                                "coords": [
+                                                    135,
+                                                    170
+                                                ],
+                                                "repeat": 1,
+                                                "delay": 1,
+                                                "action_type": "click",
+                                                "click_delay": 0.2
+                                            },
+                                            "events": [
+                                                {
+                                                    "description": "open BUFF applicant list",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Open list of applications",
+                                                        "coords": [
+                                                            935,
+                                                            1620
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 1
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "scroll application list to top",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Open list of applications",
+                                                        "coords": [
+                                                            540,
+                                                            420,
+                                                            550,
+                                                            1650
+                                                        ],
+                                                        "repeat": 5,
+                                                        "delay": 2,
+                                                        "action_type": "drag",
+                                                        "click_delay": 0.3
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "Accept applications",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click CHECKMARK",
+                                                        "coords": [
+                                                            810,
+                                                            425
+                                                        ],
+                                                        "repeat": 5,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.075
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "Close application list",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click 'X' to close window",
+                                                        "coords": [
+                                                            995,
+                                                            195
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "Close current buff window",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click 'X' to close buff window",
+                                                        "coords": [
+                                                            995,
+                                                            195
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "description": "Check for DEV/SCIENCE/INTERIOR buff applications",
+                                            "trigger": {
+                                                "area": [
+                                                    75,
+                                                    1130,
+                                                    760,
+                                                    1170
+                                                ],
+                                                "color": [
+                                                    [
+                                                        0,
+                                                        183,
+                                                        230
+                                                    ],
+                                                    [
+                                                        10,
+                                                        255,
+                                                        255
+                                                    ]
+                                                ],
+                                                "min_size": 200,
+                                                "override": false
+                                            },
+                                            "action": {
+                                                "description": "open BOTTOM ROW buff",
+                                                "coords": [
+                                                    130,
+                                                    170
+                                                ],
+                                                "repeat": 1,
+                                                "delay": 1,
+                                                "action_type": "click",
+                                                "click_delay": 0.2
+                                            },
+                                            "events": [
+                                                {
+                                                    "description": "open BUFF applicant list",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Open list of applications",
+                                                        "coords": [
+                                                            935,
+                                                            1620
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 1
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "scroll application list to top",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Open list of applications",
+                                                        "coords": [
+                                                            540,
+                                                            420,
+                                                            550,
+                                                            1650
+                                                        ],
+                                                        "repeat": 10,
+                                                        "delay": 2,
+                                                        "action_type": "drag",
+                                                        "click_delay": 0.5
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "Accept applications",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click CHECKMARK",
+                                                        "coords": [
+                                                            810,
+                                                            425
+                                                        ],
+                                                        "repeat": 10,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.075
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "Close application list",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click 'X' to close window",
+                                                        "coords": [
+                                                            995,
+                                                            195
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "Close current buff window",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click 'X' to close buff window",
+                                                        "coords": [
+                                                            995,
+                                                            195
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "description": "Exit buffs window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click BACK arrow at bottom of screen",
+                                        "coords": [
+                                            60,
+                                            1825
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 1,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": [
+                                        {
+                                            "description": "Exit profile window",
+                                            "trigger": null,
+                                            "action": {
+                                                "description": "Click X to close profile window",
+                                                "coords": [
+                                                    985,
+                                                    230
+                                                ],
+                                                "repeat": 1,
+                                                "delay": 1,
+                                                "action_type": "click",
+                                                "click_delay": 0.2
+                                            },
+                                            "events": null
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "DAILY tasks",
+                    "description": "Check for daily VIP points and gems",
+                    "run_interval": 23.5,
+                    "skip": false,
+                    "events": [
+                        {
+                            "description": "Check for free daily VIP points",
+                            "trigger": {
+                                "area": [
+                                    99,
+                                    215,
+                                    122,
+                                    236
+                                ],
+                                "color": [
+                                    [
+                                        146,
+                                        136,
+                                        182
+                                    ],
+                                    [
+                                        179,
+                                        255,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 19,
+                                "type": "static",
+                                "qty": "single",
+                                "ref_img": null
+                            },
+                            "action": null,
+                            "events": [
+                                {
+                                    "description": "Open VIP window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click VIP symbol",
+                                        "coords": [
+                                            75,
+                                            255
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 3,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                },
+                                {
+                                    "description": "Collect free VIP",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click to collect daily VIP points",
+                                        "coords": [
+                                            950,
+                                            350
+                                        ],
+                                        "repeat": 5,
+                                        "delay": 1,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                },
+                                {
+                                    "description": "Close VIP window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click back arrow to exit VIP window",
+                                        "coords": [
+                                            85,
+                                            1810
+                                        ],
+                                        "repeat": 2,
+                                        "delay": 1,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                }
+                            ],
+                            "run_count": 1
+                        },
+                        {
+                            "description": "Check for free daily GEMS",
+                            "trigger": {
+                                "area": [
+                                    857,
+                                    70,
+                                    947,
+                                    104
+                                ],
+                                "color": [
+                                    [
+                                        161,
+                                        0,
+                                        0
+                                    ],
+                                    [
+                                        180,
+                                        255,
+                                        255
+                                    ],
+                                    [
+                                        0,
+                                        199,
+                                        185
+                                    ],
+                                    [
+                                        15,
+                                        255,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 2500,
+                                "type": "static",
+                                "qty": "single",
+                                "ref_img": null
+                            },
+                            "action": null,
+                            "events": [
+                                {
+                                    "description": "open GEM mall",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click on GEM button",
+                                        "coords": [
+                                            990,
+                                            60
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 2,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                },
+                                {
+                                    "description": "collect DAILY SALE gems",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click DAILY FREEBIE",
+                                        "coords": [
+                                            140,
+                                            720
+                                        ],
+                                        "repeat": 5,
+                                        "delay": 1,
+                                        "action_type": "click",
+                                        "coord_type": "static/relative",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                },
+                                {
+                                    "description": "Select WEEKLY PASS tab",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click WEEKLY PASS tab",
+                                        "coords": [
+                                            1050,
+                                            210
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 2,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                },
+                                {
+                                    "description": "collect WEEKLY PASS free gems",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click FREE SUPPLY",
+                                        "coords": [
+                                            130,
+                                            565
+                                        ],
+                                        "repeat": 5,
+                                        "delay": 1,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                },
+                                {
+                                    "description": "Exit GEM mall",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click back button at bottom of GEM MALL window",
+                                        "coords": [
+                                            70,
+                                            1825
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 3,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                }
+                            ]
+                        }
+                    ],
+                    "daily_limit": 1
+                },
+                {
+                    "name": "IDLE tasks",
+                    "description": "various tasks to be checked while not dealing with buff applications",
+                    "skip": false,
+                    "events": [
+                        {
+                            "description": "check for HELP button",
+                            "trigger": {
+                                "area": [
+                                    780,
+                                    1298,
+                                    913,
+                                    1412
+                                ],
+                                "color": [
+                                    [
+                                        10,
+                                        110,
+                                        210
+                                    ],
+                                    [
+                                        24,
+                                        176,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 850,
+                                "type": "static",
+                                "qty": "single",
+                                "ref_img": null,
+                                "override": true
+                            },
+                            "events": [
+                                {
+                                    "description": "Open alliance window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "Click the alliance button",
+                                        "coords": [
+                                            990,
+                                            1350
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 2.5,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": [
+                                        {
+                                            "description": "Check for dot on help button",
+                                            "trigger": {
+                                                "area": [
+                                                    995,
+                                                    677,
+                                                    1030,
+                                                    713
+                                                ],
+                                                "color": [
+                                                    [
+                                                        146,
+                                                        136,
+                                                        182
+                                                    ],
+                                                    [
+                                                        179,
+                                                        255,
+                                                        255
+                                                    ]
+                                                ],
+                                                "min_size": 95,
+                                                "type": "static",
+                                                "qty": "single",
+                                                "ref_img": null,
+                                                "override": false
+                                            },
+                                            "action": null,
+                                            "events": [
+                                                {
+                                                    "description": "Open HELP window",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "click HELP button",
+                                                        "coords": [
+                                                            820,
+                                                            750
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 2,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "Help all allies",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "click HELP ALL button",
+                                                        "coords": [
+                                                            540,
+                                                            1470
+                                                        ],
+                                                        "repeat": 5,
+                                                        "delay": 1,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.1
+                                                    },
+                                                    "events": null
+                                                },
+                                                {
+                                                    "description": "Exit help window",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "click EXIT button",
+                                                        "coords": [
+                                                            995,
+                                                            355
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 2.5,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "description": "Check for new gifts",
+                                            "trigger": {
+                                                "area": [
+                                                    492,
+                                                    845,
+                                                    530,
+                                                    880
+                                                ],
+                                                "color": [
+                                                    [
+                                                        146,
+                                                        136,
+                                                        182
+                                                    ],
+                                                    [
+                                                        179,
+                                                        255,
+                                                        255
+                                                    ]
+                                                ],
+                                                "min_size": 600,
+                                                "type": "static",
+                                                "qty": "single",
+                                                "ref_img": null
+                                            },
+                                            "action": null,
+                                            "events": [
+                                                {
+                                                    "description": "open GIFTS window",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click GIFTS button",
+                                                        "coords": [
+                                                            310,
+                                                            915
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 2,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": [
+                                                        {
+                                                            "description": "click CLAIM ALL",
+                                                            "trigger": null,
+                                                            "action": {
+                                                                "description": "Collect regular gifts",
+                                                                "coords": [
+                                                                    540,
+                                                                    1795
+                                                                ],
+                                                                "repeat": 5,
+                                                                "delay": 1,
+                                                                "action_type": "click",
+                                                                "click_delay": 0.2
+                                                            },
+                                                            "events": null
+                                                        },
+                                                        {
+                                                            "description": "Check for PREMIUM GIFTS dot",
+                                                            "trigger": {
+                                                                "area": [
+                                                                    1030,
+                                                                    412,
+                                                                    1060,
+                                                                    446
+                                                                ],
+                                                                "color": [
+                                                                    [
+                                                                        0,
+                                                                        210,
+                                                                        220
+                                                                    ],
+                                                                    [
+                                                                        11,
+                                                                        255,
+                                                                        255
+                                                                    ]
+                                                                ],
+                                                                "min_size": 500,
+                                                                "type": "static",
+                                                                "qty": "single",
+                                                                "ref_img": null
+                                                            },
+                                                            "action": null,
+                                                            "events": [
+                                                                {
+                                                                    "description": "Select PREMIUM GIFTS tab",
+                                                                    "trigger": null,
+                                                                    "action": {
+                                                                        "description": "click PREMIUM GIFTS tab",
+                                                                        "coords": [
+                                                                            885,
+                                                                            475
+                                                                        ],
+                                                                        "repeat": 1,
+                                                                        "delay": 2,
+                                                                        "action_type": "click",
+                                                                        "click_delay": 0.2
+                                                                    },
+                                                                    "events": null
+                                                                },
+                                                                {
+                                                                    "description": "Collect PREMIUM GIFTS",
+                                                                    "trigger": null,
+                                                                    "action": {
+                                                                        "description": "click CLAIM ALL",
+                                                                        "coords": [
+                                                                            880,
+                                                                            1785
+                                                                        ],
+                                                                        "repeat": 3,
+                                                                        "delay": 1,
+                                                                        "action_type": "click",
+                                                                        "click_delay": 0.2
+                                                                    },
+                                                                    "events": null
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "description": "Exit GIFTS window",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "click back arrow at bottom of window",
+                                                        "coords": [
+                                                            85,
+                                                            1810
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 2,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": null
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "description": "Check for ALLIANCE TECH dot",
+                                            "trigger": {
+                                                "area": [
+                                                    994,
+                                                    1013,
+                                                    1030,
+                                                    1048
+                                                ],
+                                                "color": [
+                                                    [
+                                                        146,
+                                                        136,
+                                                        182
+                                                    ],
+                                                    [
+                                                        179,
+                                                        255,
+                                                        255
+                                                    ]
+                                                ],
+                                                "min_size": 100,
+                                                "type": "static",
+                                                "qty": "single",
+                                                "ref_img": null,
+                                                "override": false
+                                            },
+                                            "action": null,
+                                            "events": [
+                                                {
+                                                    "description": "open ALLIANCE TECH window",
+                                                    "trigger": null,
+                                                    "action": {
+                                                        "description": "Click ALLIANCE TECH button",
+                                                        "coords": [
+                                                            830,
+                                                            1090
+                                                        ],
+                                                        "repeat": 1,
+                                                        "delay": 5,
+                                                        "action_type": "click",
+                                                        "click_delay": 0.2
+                                                    },
+                                                    "events": [
+                                                        {
+                                                            "description": "find recommended ALLIANCE TECH",
+                                                            "trigger": {
+                                                                "area": [
+                                                                    55,
+                                                                    395,
+                                                                    1025,
+                                                                    1335
+                                                                ],
+                                                                "color": [
+                                                                    [
+                                                                        0,
+                                                                        155,
+                                                                        213
+                                                                    ],
+                                                                    [
+                                                                        15,
+                                                                        255,
+                                                                        255
+                                                                    ],
+                                                                    [
+                                                                        170,
+                                                                        155,
+                                                                        156
+                                                                    ],
+                                                                    [
+                                                                        180,
+                                                                        255,
+                                                                        255
+                                                                    ]
+                                                                ],
+                                                                "min_size": 250,
+                                                                "type": "moving",
+                                                                "qty": "single",
+                                                                "ref_img": null
+                                                            },
+                                                            "action": {
+                                                                "description": "click selected ALLIANCE TECH",
+                                                                "coords": [
+                                                                    130,
+                                                                    115
+                                                                ],
+                                                                "repeat": 1,
+                                                                "delay": 2,
+                                                                "action_type": "click",
+                                                                "coord_type": "relative",
+                                                                "click_delay": 0.2
+                                                            },
+                                                            "events": [
+                                                                {
+                                                                    "description": "click DONATE button",
+                                                                    "trigger": null,
+                                                                    "action": {
+                                                                        "description": "click and hold DONATE button",
+                                                                        "coords": [
+                                                                            765,
+                                                                            1450
+                                                                        ],
+                                                                        "repeat": 1,
+                                                                        "delay": 2,
+                                                                        "action_type": "click",
+                                                                        "coord_type": "static/relative",
+                                                                        "click_delay": 0.2
+                                                                    },
+                                                                    "events": null
+                                                                },
+                                                                {
+                                                                    "description": "close TECH DONATION window",
+                                                                    "trigger": null,
+                                                                    "action": {
+                                                                        "description": "click X to close donation window",
+                                                                        "coords": [
+                                                                            995,
+                                                                            330
+                                                                        ],
+                                                                        "repeat": 1,
+                                                                        "delay": 2,
+                                                                        "action_type": "click",
+                                                                        "click_delay": 0.2
+                                                                    },
+                                                                    "events": null
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "description": "exit ALLIANCE TECH window",
+                                                            "trigger": null,
+                                                            "action": {
+                                                                "description": "click X to close ALLIANCE TECH window",
+                                                                "coords": [
+                                                                    1000,
+                                                                    230
+                                                                ],
+                                                                "repeat": 1,
+                                                                "delay": 3,
+                                                                "action_type": "click",
+                                                                "click_delay": 0.2
+                                                            },
+                                                            "events": null
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "description": "Close ALLIANCE window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click back button of ALLIANCE window",
+                                        "coords": [
+                                            85,
+                                            1810
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 1,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "name": "Collect build RSS hourly",
+                    "description": "Collect building RSS hourly",
+                    "skip": false,
+                    "events": [
+                        {
+                            "description": "Collect RSS from HQ buildings hourly",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click to collect XP",
+                                "coords": [
+                                    730,
+                                    1160
+                                ],
+                                "repeat": 1,
+                                "delay": 0.5,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "Collect SCREWS",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click to collect SCREWS",
+                                "coords": [
+                                    820,
+                                    1090
+                                ],
+                                "repeat": 1,
+                                "delay": 0.5,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "collect IRON",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click to collect IRON",
+                                "coords": [
+                                    730,
+                                    1020
+                                ],
+                                "repeat": 1,
+                                "delay": 0.5,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "collect ORE",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click to collect ORE",
+                                "coords": [
+                                    640,
+                                    1090
+                                ],
+                                "repeat": 1,
+                                "delay": 0.5,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "collect FOOD",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click to collect FOOD",
+                                "coords": [
+                                    640,
+                                    950
+                                ],
+                                "repeat": 1,
+                                "delay": 0.5,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "collect COIN",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click to collect COIN",
+                                "coords": [
+                                    550,
+                                    1020
+                                ],
+                                "repeat": 1,
+                                "delay": 0.5,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "collect DRONE chests",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click to collect DRONE chests",
+                                "coords": [
+                                    450,
+                                    1090
+                                ],
+                                "repeat": 1,
+                                "delay": 0.5,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "collect OIL chests",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click to collect OIL",
+                                "coords": [
+                                    550,
+                                    1160
+                                ],
+                                "repeat": 1,
+                                "delay": 0.5,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        },
+                        {
+                            "description": "Unclick any resource building",
+                            "trigger": null,
+                            "action": {
+                                "description": "Click blank space",
+                                "coords": [
+                                    650,
+                                    1360
+                                ],
+                                "repeat": 1,
+                                "delay": 0.5,
+                                "action_type": "click",
+                                "click_delay": 0.2
+                            },
+                            "events": null
+                        }
+                    ],
+                    "run_interval": 1
+                },
+                {
+                    "name": "STAMINA points",
+                    "description": "Check for free stamina points",
+                    "skip": false,
+                    "events": [
+                        {
+                            "description": "check for free STAMINA points",
+                            "trigger": {
+                                "area": [
+                                    129,
+                                    158,
+                                    153,
+                                    180
+                                ],
+                                "color": [
+                                    [
+                                        146,
+                                        136,
+                                        182
+                                    ],
+                                    [
+                                        179,
+                                        255,
+                                        255
+                                    ]
+                                ],
+                                "min_size": 1000,
+                                "type": "static",
+                                "qty": "single",
+                                "ref_img": null
+                            },
+                            "action": null,
+                            "events": [
+                                {
+                                    "description": "open STAMINA window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click on STAMINA bar",
+                                        "coords": [
+                                            90,
+                                            180
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 3,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                },
+                                {
+                                    "description": "claim free stamina points",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click CLAIM button",
+                                        "coords": [
+                                            890,
+                                            575
+                                        ],
+                                        "repeat": 2,
+                                        "delay": 0.5,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                },
+                                {
+                                    "description": "exit stamina window",
+                                    "trigger": null,
+                                    "action": {
+                                        "description": "click X to exit stamina window",
+                                        "coords": [
+                                            995,
+                                            215
+                                        ],
+                                        "repeat": 1,
+                                        "delay": 1,
+                                        "action_type": "click",
+                                        "click_delay": 0.2
+                                    },
+                                    "events": null
+                                }
+                            ]
+                        }
+                    ],
+                    "run_interval": 4,
+                    "daily_limit": 2
+                }
+            ]
+        }
+    }
+}
