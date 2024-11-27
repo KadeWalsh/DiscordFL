@@ -77,6 +77,8 @@ class Event(CommonPrintFormat):
         if self.run_interval is not None:
             self.run_last = datetime.datetime.now(
             ) - datetime.timedelta(event.get('run_last'))
+        else:
+            self.run_last = None
 
 
 class Job(CommonPrintFormat):
