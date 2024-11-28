@@ -79,11 +79,22 @@ class DiscordBot:
             else:
                 await ctx.send("Game already running!")
 
-        @self.bot.command()
+        @self.bot.command(name='sync',
+                          description='Sync all slash commands to the server')
         async def sync(ctx):
             print("sync command")
             await bot.tree.sync()
             await ctx.send('Command tree synced.')
+
+        @self.bot.command(name='reload_jobs',
+                          description='Reload job logic from file.')
+        async def reload_jobs(ctx):
+            print("Reloading jobs...")
+            await ctx.send('Hot reloading job logic from file...')
+            self.clicker_bot.stop()
+            self.clicker_bot.reload_jobs()
+            self.clicker_bot.start()
+            await ctx.send('Reload complete!')
 
         @discord.app_commands.choices(option=[
             discord.app_commands.Choice(name="No", value="n"),

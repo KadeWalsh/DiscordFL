@@ -1,3 +1,4 @@
+import random
 from io import BytesIO
 import json
 import cv2
@@ -27,6 +28,11 @@ class ClickerBot:
         self.game_name = 'com.fun.lastwar.gp'
         self.click_thread = None
         self.start()
+
+    def reload_jobs(self, filename: str = 'actual.json'):
+        with open(filename, 'r') as f:
+            json_file = json.load(f)
+            self.setup_logic(json_file['settings']['clicker']['jobs'])
 
     def get_server_time(self):
         UTC = datetime.datetime.now(datetime.timezone.utc)
@@ -68,20 +74,18 @@ class ClickerBot:
         while self.running is True:
             # Get current server time
             server_time = self.get_server_time()
-
+            formatted_time = server_time.strftime("%d/%m %H:%M:%S")
+            job_executed = False
             # Iterate through jobs
             for job in job_list:
-                # Skip RESET if no other jobs have run to change screen
-                if job.name == "RESET":
-                    if job_executed is False:
-                        continue
 
                 # Check if server time has passed reset
                 self.check_new_day()
 
                 # Check if job eligible to be run
                 if self.can_run(job) is True:
-                    # print(f"Running {job.name}")
+                    # Print current time and job name to console
+                    print(f"{formatted_time}: Running {job.name}.")
 
                     # Update 'last run' time for job
                     job.last_run = server_time
@@ -91,34 +95,34 @@ class ClickerBot:
 
                         # Execute event and check if job returns True
                         if self.execute_event(event) is True:
-
                             # set job_executed to true unless by RESET
-                            if job.name in ["RESET",
-                                            "Collect build RSS hourly"]:
-                                job_executed = False
-
-                            else:
+                            if job.name != "RESET":
                                 job_executed = True
+
+                        random_sleep()
 
                     # Update last_run time for job
                     job.last_run = server_time
 
                     # Increment run count for job
                     job.run_count += 1
+
+                    RESTART_CYCLE_NAME = "FIRST LADY"
+                    # If FL jobs executed
+                    if job.name == RESTART_CYCLE_NAME and job_executed is True:
+                        print("FL Executed successfully!")
+                        # Return to start of loop to improve FL performance
+                        break
+
                 # Update last job and server last_run_times
                 self.last_run_time = server_time
 
             # Wait 2 seconds between job iterations if no job was executed
             if job_executed is True:
-                time.sleep(2)
+                random_sleep(10)
 
     def start(self, job_list: list[Job] = [None]):
         print("Starting ClickerBot...")
-        print(f"Running: {self.running}")
-        print(f"Thread exists: {self.click_thread is not None}")
-        print(f"""Thread is alive: {
-              self.click_thread is not None
-              and self.click_thread.is_alive()}""")
         self.running = True
         if self.click_thread is None or self.click_thread.is_alive() is False:
             self.click_thread = Thread(target=self.run_jobs, args=(job_list,))
@@ -176,6 +180,7 @@ class ClickerBot:
                     if event.events is not None:
                         for next_event in event.events:
                             self.execute_event(next_event)
+                    random_sleep(1)
 
             else:
                 if event.events is not None:
@@ -208,15 +213,17 @@ class ClickerBot:
             command = f"input tap {coords.x} {coords.y}"
             self.send_adb(command)
             time.sleep(action.click_delay)
+            random_sleep(1)
 
     def send_drag(self, action: Action) -> None:
         start = action.coords[0]
         end = action.coords[1]
-        command = f"input touchscreen swipe {
-            start.x} {start.y} {end.x} {end.y} 100"
         for i in range(action.repeat):
+            command = f"input touchscreen swipe {
+                start.x} {start.y} {end.x} {end.y} {100 + random.randint(0, 50)}"
             self.send_adb(command)
             time.sleep(action.click_delay)
+            random_sleep(1)
 
     def execute_action(self,
                        action: Action,
@@ -230,8 +237,10 @@ class ClickerBot:
             # Check if action is a click
             if action.action_type == "click":
                 # Modify action coords to offset for trigger hit locations
-                updated_action.coords.x += hit[0]
-                updated_action.coords.y += hit[1]
+                updated_action.coords.x += hit[0] + \
+                    ((random.randint(0, 10) - 5) / 10) * 10
+                updated_action.coords.y += hit[1] + \
+                    ((random.randint(0, 10) - 5) / 10) * 10
                 # send action to send_click function
                 self.send_click(updated_action)
 
@@ -246,6 +255,7 @@ class ClickerBot:
 
             # Wait for post-action delay as set in action
             time.sleep(action.delay)
+            random_sleep(1)
 
     def send_keypress(self, action: Action) -> None:
         keycode = action.__dict__.get('keycode') or "KEYCODE_BACK"
@@ -253,6 +263,7 @@ class ClickerBot:
         for _ in range(action.repeat):
             self.send_adb(command)
             time.sleep(action.click_delay)
+            random_sleep(0.2)
 
     def get_status(self):
         status_dict = {}
@@ -408,51 +419,16 @@ class ClickerBot:
             print(f"Error during video recording: {e}")
             return None
 
-    def capture_video(self, output_file="output.mp4"):
-        """
-        Converts raw H.264 video data into an MP4 file using ffmpeg-python.
-
-        Parameters:
-            video_data (bytes): The raw H.264 video data.
-            output_file (str): The filename for the output MP4 file.
-
-        Returns:
-            str: Path to the saved MP4 file.
-        """
-        try:
-            video_data = self.grab_screen_recording()
-            mp4_buffer = BytesIO()
-            (
-                ffmpeg
-                .input("pipe:0",
-                       format="h264")
-                .output("pipe:1",
-                        format="mp4",
-                        vcodec="copy")
-                .run(input=video_data,
-                     stdout=mp4_buffer,
-                     overwrite_output=True)
-            )
-
-            # Reset buffer pointer to the beginning
-            mp4_buffer.seek(0)
-
-            return mp4_buffer
-
-        except ffmpeg.Error as e:
-            print(f"FFmpeg error: {e.stderr.decode()}")
-            return None
-
-        except Exception as e:
-            print(f"Error during recording: {e}")
-            return None
-
 
 def load_job_logic(logic_file: str):
     with open(logic_file, 'r') as f:
         logic = json.load(f)
 
         return logic['settings']['clicker']
+
+
+def random_sleep(max_time: int = 2) -> None:
+    time.sleep(random.random() * max_time)
 
 
 def main():
