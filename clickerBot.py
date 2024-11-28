@@ -81,6 +81,9 @@ class ClickerBot:
             for job in job_list:
                 # Check if game is not running, start it if necessary
                 if self.ADB.is_game_running() is False:
+                    # Kill game if still in memory
+                    self.ADB.stop_game()
+                    random_sleep(10)
                     # Start game
                     self.ADB.start_game()
                     time.sleep(30)
