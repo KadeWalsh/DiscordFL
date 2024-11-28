@@ -75,7 +75,7 @@ class ClickerBot:
 
             # Get current server time
             server_time = self.get_server_time()
-            formatted_time = server_time.strftime("%d/%m %H:%M:%S")
+            formatted_time = server_time.strftime("%m/%d %H:%M:%S")
             job_executed = False
             # Iterate through jobs
             for job in job_list:
