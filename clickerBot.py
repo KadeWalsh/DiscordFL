@@ -89,7 +89,6 @@ class ClickerBot:
                     time.sleep(30)
                     # Exit for loop and restart job
                     break
-
                 elif self.running is False:
                     reset = job_list[0]
                     for event in reset.events:
@@ -109,6 +108,8 @@ class ClickerBot:
 
                     # Iterate through events in current job
                     for event in job.events:
+                        if self.running is False:
+                            break
 
                         # Execute event and check if job returns True
                         if self.execute_event(event) is True:

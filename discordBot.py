@@ -80,14 +80,14 @@ class DiscordBot:
                 await ctx.send("Game already running!")
 
         @self.bot.command(name='sync',
-                          description='Sync all slash commands to the server')
+                          help='Sync all slash commands to the server')
         async def sync(ctx):
             print("sync command")
-            await bot.tree.sync()
+            await self.bot.tree.sync()
             await ctx.send('Command tree synced.')
 
         @self.bot.command(name='reload_jobs',
-                          description='Reload job logic from file.')
+                          help='Reload job logic from file.')
         async def reload_jobs(ctx):
             print("Reloading jobs...")
             await ctx.send('Hot reloading job logic from file...')
@@ -111,7 +111,7 @@ class DiscordBot:
             #     self.clicker_bot.start()
 
         @self.bot.command(name="screenshot",
-                          description="See a current screenshot.")
+                          help="See the current screen.")
         async def screenshot(ctx):
             try:
                 screenshot = self.clicker_bot.ADB.capture_screenshot()
