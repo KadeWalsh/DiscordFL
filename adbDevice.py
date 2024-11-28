@@ -165,8 +165,10 @@ class ADBdevice:
 
     @retry_on_error()
     def start_game(self, name='com.fun.lastwar.gp'):
-        command = f"monkey -p  {name} -c android.intent.category.LAUNCHER 1"
-        self.execute_shell_command(command)
+        while self.is_game_running() is False:
+            command = f"monkey -p  {name} -c android.intent.category.LAUNCHER 1"
+            self.execute_shell_command(command)
+            time.sleep(5)
 
     def stop_game(self, name='com.fun.lastwar.gp'):
         command = f"am force-stop {name}"

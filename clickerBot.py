@@ -72,12 +72,20 @@ class ClickerBot:
 
         # Create bot loop
         while self.running is True:
+
             # Get current server time
             server_time = self.get_server_time()
             formatted_time = server_time.strftime("%d/%m %H:%M:%S")
             job_executed = False
             # Iterate through jobs
             for job in job_list:
+                # Check if game is not running, start it if necessary
+                if self.ADB.is_game_running() is False:
+                    # Start game
+                    self.ADB.start_game()
+                    time.sleep(30)
+                    # Exit for loop and restart job
+                    break
 
                 # Check if server time has passed reset
                 self.check_new_day()
@@ -99,7 +107,7 @@ class ClickerBot:
                             if job.name != "RESET":
                                 job_executed = True
 
-                        random_sleep()
+                        random_sleep(2)
 
                     # Update last_run time for job
                     job.last_run = server_time
@@ -113,13 +121,15 @@ class ClickerBot:
                         print("FL Executed successfully!")
                         # Return to start of loop to improve FL performance
                         break
+                    elif job.name == "RESET":
+                        job_executed = False
 
                 # Update last job and server last_run_times
                 self.last_run_time = server_time
 
             # Wait 2 seconds between job iterations if no job was executed
             if job_executed is True:
-                random_sleep(10)
+                random_sleep(20)
 
     def start(self, job_list: list[Job] = [None]):
         print("Starting ClickerBot...")
