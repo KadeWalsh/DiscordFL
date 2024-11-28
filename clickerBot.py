@@ -90,6 +90,12 @@ class ClickerBot:
                     # Exit for loop and restart job
                     break
 
+                elif self.running is False:
+                    reset = job_list[0]
+                    for event in reset.events:
+                        self.execute_event(event)
+                    break
+
                 # Check if server time has passed reset
                 self.check_new_day()
 
