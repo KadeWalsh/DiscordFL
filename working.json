@@ -9,6 +9,7 @@
                 "port": 5655
             },
             "time_offset": -2,
+            "idle_timeout": 10,
             "jobs": [
                 {
                     "name": "RESET",
@@ -26,8 +27,9 @@
                                 ],
                                 "repeat": 8,
                                 "delay": 1,
+                                "variation": 3,
                                 "action_type": "key",
-                                "click_delay": 0.3
+                                "click_delay": 0.15
                             },
                             "events": [
                                 {
@@ -64,7 +66,7 @@
                                         "repeat": 1,
                                         "delay": 1,
                                         "action_type": "key",
-                                        "click_delay": 0.2
+                                        "click_delay": 0.1
                                     },
                                     "events": null
                                 }
@@ -357,22 +359,63 @@
                                                     "events": null
                                                 },
                                                 {
-                                                    "description": "scroll application list to top",
-                                                    "trigger": null,
+                                                    "description": "Check for full page of applications",
+                                                    "trigger": {
+                                                        "area": [
+                                                            767,
+                                                            1580,
+                                                            850,
+                                                            1660
+                                                        ],
+                                                        "color": [
+                                                            [
+                                                                50,
+                                                                85,
+                                                                177
+                                                            ],
+                                                            [
+                                                                80,
+                                                                255,
+                                                                255
+                                                            ]
+                                                        ],
+                                                        "min_size": 3000,
+                                                        "type": "static",
+                                                        "ref_img": null
+                                                    },
                                                     "action": {
-                                                        "description": "Open list of applications",
+                                                        "description": "Scroll list of applications",
                                                         "coords": [
                                                             540,
                                                             420,
                                                             550,
                                                             1650
                                                         ],
-                                                        "repeat": 5,
+                                                        "repeat": 6,
+                                                        "variation": 1,
                                                         "delay": 2,
                                                         "action_type": "drag",
                                                         "click_delay": 0.3
                                                     },
-                                                    "events": null
+                                                    "events": [
+                                                        {
+                                                            "description": "Accept applications",
+                                                            "trigger": null,
+                                                            "action": {
+                                                                "description": "Click CHECKMARK",
+                                                                "coords": [
+                                                                    810,
+                                                                    425
+                                                                ],
+                                                                "repeat": 15,
+                                                                "variation": 3,
+                                                                "delay": 1,
+                                                                "action_type": "click",
+                                                                "click_delay": 0.075
+                                                            },
+                                                            "events": null
+                                                        }
+                                                    ]
                                                 },
                                                 {
                                                     "description": "Accept applications",
@@ -384,6 +427,7 @@
                                                             425
                                                         ],
                                                         "repeat": 5,
+                                                        "variation": 1,
                                                         "delay": 1,
                                                         "action_type": "click",
                                                         "click_delay": 0.075
@@ -477,22 +521,63 @@
                                                     "events": null
                                                 },
                                                 {
-                                                    "description": "scroll application list to top",
-                                                    "trigger": null,
+                                                    "description": "Check for full page of applications",
+                                                    "trigger": {
+                                                        "area": [
+                                                            767,
+                                                            1580,
+                                                            850,
+                                                            1660
+                                                        ],
+                                                        "color": [
+                                                            [
+                                                                50,
+                                                                85,
+                                                                177
+                                                            ],
+                                                            [
+                                                                80,
+                                                                255,
+                                                                255
+                                                            ]
+                                                        ],
+                                                        "min_size": 3000,
+                                                        "type": "static",
+                                                        "ref_img": null
+                                                    },
                                                     "action": {
-                                                        "description": "Open list of applications",
+                                                        "description": "Scroll list of applications",
                                                         "coords": [
                                                             540,
                                                             420,
                                                             550,
                                                             1650
                                                         ],
-                                                        "repeat": 10,
+                                                        "repeat": 5,
+                                                        "variation": 1,
                                                         "delay": 2,
                                                         "action_type": "drag",
-                                                        "click_delay": 0.5
+                                                        "click_delay": 0.3
                                                     },
-                                                    "events": null
+                                                    "events": [
+                                                        {
+                                                            "description": "Accept applications",
+                                                            "trigger": null,
+                                                            "action": {
+                                                                "description": "Click CHECKMARK",
+                                                                "coords": [
+                                                                    810,
+                                                                    425
+                                                                ],
+                                                                "repeat": 15,
+                                                                "variation": 3,
+                                                                "delay": 1,
+                                                                "action_type": "click",
+                                                                "click_delay": 0.075
+                                                            },
+                                                            "events": null
+                                                        }
+                                                    ]
                                                 },
                                                 {
                                                     "description": "Accept applications",
@@ -503,7 +588,8 @@
                                                             810,
                                                             425
                                                         ],
-                                                        "repeat": 10,
+                                                        "repeat": 5,
+                                                        "variation": 1,
                                                         "delay": 1,
                                                         "action_type": "click",
                                                         "click_delay": 0.075
@@ -643,6 +729,7 @@
                                             350
                                         ],
                                         "repeat": 5,
+                                        "variation": 1,
                                         "delay": 1,
                                         "action_type": "click",
                                         "click_delay": 0.2
@@ -732,6 +819,7 @@
                                             720
                                         ],
                                         "repeat": 5,
+                                        "variation": 1,
                                         "delay": 1,
                                         "action_type": "click",
                                         "coord_type": "static/relative",
@@ -765,6 +853,7 @@
                                             565
                                         ],
                                         "repeat": 5,
+                                        "variation": 1,
                                         "delay": 1,
                                         "action_type": "click",
                                         "click_delay": 0.2
@@ -796,6 +885,7 @@
                     "name": "IDLE tasks",
                     "description": "various tasks to be checked while not dealing with buff applications",
                     "skip": false,
+                    "run_interval": 0.25,
                     "events": [
                         {
                             "description": "check for HELP button",
@@ -895,6 +985,7 @@
                                                             1470
                                                         ],
                                                         "repeat": 5,
+                                                        "variation": 1,
                                                         "delay": 1,
                                                         "action_type": "click",
                                                         "click_delay": 0.1
@@ -972,6 +1063,7 @@
                                                                     1795
                                                                 ],
                                                                 "repeat": 5,
+                                                                "variation": 2,
                                                                 "delay": 1,
                                                                 "action_type": "click",
                                                                 "click_delay": 0.2
@@ -1031,7 +1123,8 @@
                                                                             880,
                                                                             1785
                                                                         ],
-                                                                        "repeat": 3,
+                                                                        "repeat": 4,
+                                                                        "variation": 1,
                                                                         "delay": 1,
                                                                         "action_type": "click",
                                                                         "click_delay": 0.2
@@ -1085,7 +1178,7 @@
                                                 "type": "static",
                                                 "qty": "single",
                                                 "ref_img": null,
-                                                "override": false
+                                                "override": true
                                             },
                                             "action": null,
                                             "events": [
@@ -1245,7 +1338,7 @@
                                     1160
                                 ],
                                 "repeat": 1,
-                                "delay": 0.5,
+                                "delay": 0.1,
                                 "action_type": "click",
                                 "click_delay": 0.2
                             },
@@ -1261,7 +1354,7 @@
                                     1090
                                 ],
                                 "repeat": 1,
-                                "delay": 0.5,
+                                "delay": 0.1,
                                 "action_type": "click",
                                 "click_delay": 0.2
                             },
@@ -1277,7 +1370,7 @@
                                     1020
                                 ],
                                 "repeat": 1,
-                                "delay": 0.5,
+                                "delay": 0.1,
                                 "action_type": "click",
                                 "click_delay": 0.2
                             },
@@ -1293,7 +1386,7 @@
                                     1090
                                 ],
                                 "repeat": 1,
-                                "delay": 0.5,
+                                "delay": 0.1,
                                 "action_type": "click",
                                 "click_delay": 0.2
                             },
@@ -1309,7 +1402,7 @@
                                     950
                                 ],
                                 "repeat": 1,
-                                "delay": 0.5,
+                                "delay": 0.1,
                                 "action_type": "click",
                                 "click_delay": 0.2
                             },
@@ -1325,7 +1418,7 @@
                                     1020
                                 ],
                                 "repeat": 1,
-                                "delay": 0.5,
+                                "delay": 0.1,
                                 "action_type": "click",
                                 "click_delay": 0.2
                             },
@@ -1341,7 +1434,7 @@
                                     1090
                                 ],
                                 "repeat": 1,
-                                "delay": 0.5,
+                                "delay": 0.1,
                                 "action_type": "click",
                                 "click_delay": 0.2
                             },
@@ -1357,7 +1450,7 @@
                                     1160
                                 ],
                                 "repeat": 1,
-                                "delay": 0.5,
+                                "delay": 0.1,
                                 "action_type": "click",
                                 "click_delay": 0.2
                             },
@@ -1370,7 +1463,7 @@
                                 "description": "Click blank space",
                                 "coords": [
                                     650,
-                                    1360
+                                    1450
                                 ],
                                 "repeat": 1,
                                 "delay": 0.5,
@@ -1385,7 +1478,7 @@
                 {
                     "name": "STAMINA points",
                     "description": "Check for free stamina points",
-                    "skip": false,
+                    "skip": true,
                     "events": [
                         {
                             "description": "check for free STAMINA points",

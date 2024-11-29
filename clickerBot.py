@@ -85,7 +85,7 @@ class ClickerBot:
                     # Exit for loop and restart job
                     break
 
-                if (job.name == "FIRST LADY" and job.run_count > 0 and
+                if (job.name == "FIRST LADY" and job.run_count > 1 and
                         (job.last_run <= self.get_server_time()
                          - datetime.timedelta(minutes=self.idle_timeout))):
                     self.restart_game()
@@ -245,7 +245,11 @@ class ClickerBot:
 
     def send_click(self, action: Action) -> None:
         coords = action.coords
-        for _ in range(action.repeat):
+
+        variance = action.get('variation') or 0
+        variation = random.randint(-variance, variance)
+
+        for _ in range(action.repeat + variation):
             command = f"input tap {coords.x} {coords.y}"
             self.send_adb(command)
             time.sleep(action.click_delay)
@@ -254,7 +258,10 @@ class ClickerBot:
     def send_drag(self, action: Action) -> None:
         start = action.coords[0]
         end = action.coords[1]
-        for i in range(action.repeat):
+        variance = action.get('variation') or 0
+        variation = random.randint(-variance, variance)
+
+        for i in range(action.repeat + variation):
             command = f"""input touchscreen swipe {
                 start.x} {start.y} {end.x} {end.y} {
                     100 + random.randint(0, 50)}"""
@@ -297,7 +304,10 @@ class ClickerBot:
     def send_keypress(self, action: Action) -> None:
         keycode = action.__dict__.get('keycode') or "KEYCODE_BACK"
         command = f"input keyevent {keycode}"
-        for _ in range(action.repeat):
+        variance = action.get('variation') or 0
+        variation = random.randint(-variance, variance)
+
+        for _ in range(action.repeat + variation):
             self.send_adb(command)
             time.sleep(action.click_delay)
             random_sleep(0.2)
