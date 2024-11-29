@@ -117,8 +117,7 @@ class ClickerBot:
                     # Increment run count for job
                     job.run_count += 1
 
-                    # Set name of job to trigger auto-restart of cycle
-                    RESTART_NAME = "FIRST LADY"
+                    # Check if a job actually ran successfully
                     if job_executed is True:
                         # Update 'last run' time for job
                         job.last_run = self.get_server_time()
@@ -133,12 +132,12 @@ class ClickerBot:
 
                         # Check if 'RESET' is current job
                         if job.name == "RESET":
-                            # Ensure 'RESET' does not set job_executed to True
+                            # Ensure 'RESET' does not exit jobs loop
                             job_executed = False
 
                         # A job completed successfully
                         else:
-                            # Break from for loop and start again from beginning
+                            # Break from for loop and start again
                             break
 
                 # Update last job and server last_run_times
