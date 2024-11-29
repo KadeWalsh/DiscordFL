@@ -181,6 +181,9 @@ class ClickerBot:
         self.load_dismiss_buff_logic()
 
     def execute_event(self, event: Event) -> bool:
+        if self.running is False:
+            return False
+
         if (event.run_last is not None and
                 event.run_last > self.get_server_time()
                 - datetime.timedelta(hours=event.run_interval)):
@@ -246,7 +249,7 @@ class ClickerBot:
     def send_click(self, action: Action) -> None:
         coords = action.coords
 
-        variance = action.get('variation') or 0
+        variance = action.variation
         variation = random.randint(-variance, variance)
 
         for _ in range(action.repeat + variation):
@@ -258,7 +261,7 @@ class ClickerBot:
     def send_drag(self, action: Action) -> None:
         start = action.coords[0]
         end = action.coords[1]
-        variance = action.get('variation') or 0
+        variance = action.variation
         variation = random.randint(-variance, variance)
 
         for i in range(action.repeat + variation):
@@ -272,6 +275,10 @@ class ClickerBot:
     def execute_action(self,
                        action: Action,
                        trigger_hits: Coords) -> None:
+        # Check if current action is disabled in JSON
+        if action.skip is True:
+            return
+
         if trigger_hits is None:
             trigger_hits = [[0, 0]]
         # Iterate through trigger hits
@@ -304,7 +311,7 @@ class ClickerBot:
     def send_keypress(self, action: Action) -> None:
         keycode = action.__dict__.get('keycode') or "KEYCODE_BACK"
         command = f"input keyevent {keycode}"
-        variance = action.get('variation') or 0
+        variance = action.variation
         variation = random.randint(-variance, variance)
 
         for _ in range(action.repeat + variation):
