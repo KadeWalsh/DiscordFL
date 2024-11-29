@@ -101,16 +101,12 @@ class DiscordBot:
             await ctx.send("Attempting to kill game process...")
             self.clicker_bot.restart_game()
             await ctx.send("Game restarted successfully!")
-            print(f"{ctx}")
-            # if interaction.message == "y":
-            #     self.clicker_bot.start()
 
         @self.bot.command(name="screenshot",
                           help="Have me send a current screenshot")
         async def screenshot(ctx):
             try:
                 screenshot = self.clicker_bot.ADB.capture_screenshot()
-                # rgb_screenshot = cv2.cvtColor(screenshot, cv2.COLOR_BGR2RGB)
 
                 is_success, buffer = cv2.imencode(".png", screenshot)
 
@@ -118,12 +114,13 @@ class DiscordBot:
                     await ctx.send("Failed to encode the image.")
                     return
 
-                # Step 3: Store the encoded image in a BytesIO buffer
+                # Store image into BytesIO Buffer object in memory
                 image_buffer = BytesIO(buffer)
+
                 # Reset the buffer pointer to the beginning
                 image_buffer.seek(0)
 
-                # Step 4: Send the image via Discord
+                # Send the image via Discord
                 discord_file = discord.File(
                     fp=image_buffer, filename="image.png")
                 await ctx.send("Here is your image:", file=discord_file)

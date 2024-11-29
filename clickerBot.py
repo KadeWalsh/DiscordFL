@@ -83,6 +83,12 @@ class ClickerBot:
                     time.sleep(30)
                     # Exit for loop and restart job
                     break
+
+                if (job.name == "FIRST LADY" and
+                        (job.last_run <= self.get_server_time()
+                         - datetime.timedelta(minutes=10))):
+                    self.restart_game()
+
                 if self.running is False:
                     reset = job_list[0]
                     for event in reset.events:
@@ -410,6 +416,8 @@ class ClickerBot:
         self.ADB.stop_game(self.game_name)
         time.sleep(5)
         self.ensure_game_running()
+        time.sleep(10)
+        self.start()
 
     def grab_screen_recording(self, duration=30):
         """
