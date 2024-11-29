@@ -2,6 +2,7 @@ import json
 # import time
 from clickerBot import ClickerBot
 from discordBot import DiscordBot
+from database import create_tables
 
 DEFAULT_JSON = "actual.json"
 
@@ -39,6 +40,7 @@ class MainBot:
 
 
 def main(*args, **kwargs):
+    create_tables()
     bot = MainBot(DEFAULT_JSON)
     bot.start_bots()
 

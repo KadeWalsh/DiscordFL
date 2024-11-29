@@ -41,11 +41,6 @@ class DiscordBot:
         async def on_ready():
             print(f"Bot is online and logged in as {self.bot.user}")
 
-        @self.bot.command(name="hello", help="Responds with a greeting")
-        async def hello(ctx):
-            print("Command '!hello' registered!")
-            await ctx.send(f"Hello, {ctx.author.mention}!")
-
         @self.bot.command(name="start", help="Starts the FL Bot")
         async def start(ctx):
             await ctx.send(f"""FL Bot is starting, as requested by {
@@ -53,7 +48,7 @@ class DiscordBot:
             self.clicker_bot.ensure_game_running()
             self.clicker_bot.start()
 
-        @self.bot.command(name="stop", help="Stop the FL Bot")
+        @self.bot.command(name="stop", help="Stops the FL Bot")
         async def stop(ctx):
             await ctx.send(f"""FL Bot is stopping, as requested by {
                 ctx.author.mention}!""")
@@ -68,7 +63,7 @@ class DiscordBot:
             await ctx.send(status)
 
         @self.bot.command(name="start_game",
-                          help="Start the game if not already running.")
+                          help="Start the game if not already running")
         async def start_game(ctx):
             await ctx.send("Checking if game is already running...")
             if self.clicker_bot.ADB.is_game_running() is False:
@@ -87,7 +82,7 @@ class DiscordBot:
             await ctx.send('Command tree synced.')
 
         @self.bot.command(name='reload_jobs',
-                          help='Reload job logic from file.')
+                          help='Reload job logic from file as hot reload')
         async def reload_jobs(ctx):
             print("Reloading jobs...")
             await ctx.send('Hot reloading job logic from file...')
@@ -101,7 +96,7 @@ class DiscordBot:
             discord.app_commands.Choice(name="Yes", value="y"),
         ])
         @self.bot.command(name="restart",
-                          help="Restart the game on the host device.")
+                          help="Restart the game on the host device")
         async def restart(ctx):
             await ctx.send("Attempting to kill game process...")
             self.clicker_bot.restart_game()
@@ -111,7 +106,7 @@ class DiscordBot:
             #     self.clicker_bot.start()
 
         @self.bot.command(name="screenshot",
-                          help="See the current screen.")
+                          help="Have me send a current screenshot")
         async def screenshot(ctx):
             try:
                 screenshot = self.clicker_bot.ADB.capture_screenshot()

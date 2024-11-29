@@ -1,3 +1,4 @@
+import database as DB
 import random
 from io import BytesIO
 import json
@@ -7,7 +8,6 @@ import time
 import copy
 import datetime
 from threading import Thread
-import ffmpeg
 
 from adbDevice import ADBdevice
 from classes import Job, Event, Trigger, Area, Color, Coords, Action
@@ -27,7 +27,6 @@ class ClickerBot:
         self.status = self.get_status()
         self.game_name = 'com.fun.lastwar.gp'
         self.click_thread = None
-        self.start()
 
     def reload_jobs(self, filename: str = 'actual.json'):
         with open(filename, 'r') as f:
@@ -72,11 +71,6 @@ class ClickerBot:
 
         # Create bot loop
         while self.running is True:
-
-            # Get current server time
-            server_time = self.get_server_time()
-            formatted_time = server_time.strftime("%m/%d %H:%M:%S")
-            job_executed = False
             # Iterate through jobs
             for job in job_list:
                 # Check if game is not running, start it if necessary
@@ -89,22 +83,23 @@ class ClickerBot:
                     time.sleep(30)
                     # Exit for loop and restart job
                     break
-                elif self.running is False:
+                if self.running is False:
                     reset = job_list[0]
                     for event in reset.events:
                         self.execute_event(event)
                     break
+
+                if job.name == "RESET" and job_executed is False:
+                    continue
 
                 # Check if server time has passed reset
                 self.check_new_day()
 
                 # Check if job eligible to be run
                 if self.can_run(job) is True:
-                    # Print current time and job name to console
-                    print(f"{formatted_time}: Running {job.name}.")
 
-                    # Update 'last run' time for job
-                    job.last_run = server_time
+                    # Print current time and job name to console
+                    # print(f"Starting {job.name} Job...")
 
                     # Iterate through events in current job
                     for event in job.events:
@@ -119,23 +114,35 @@ class ClickerBot:
 
                         random_sleep(2)
 
-                    # Update last_run time for job
-                    job.last_run = server_time
-
                     # Increment run count for job
                     job.run_count += 1
 
-                    RESTART_CYCLE_NAME = "FIRST LADY"
-                    # If FL jobs executed
-                    if job.name == RESTART_CYCLE_NAME and job_executed is True:
-                        print("FL Executed successfully!")
-                        # Return to start of loop to improve FL performance
-                        break
-                    elif job.name == "RESET":
-                        job_executed = False
+                    # Set name of job to trigger auto-restart of cycle
+                    RESTART_NAME = "FIRST LADY"
+                    if job_executed is True:
+                        # Update 'last run' time for job
+                        job.last_run = self.get_server_time()
+
+                        # If job was not 'RESET' then add job to database
+                        if job.name != "RESET":
+                            DB.insert_job(job)
+
+                        # Log job execution to console if desired for testing
+                        # print(f"""{formatted_time}  --  {
+                        #     job.name} executed successfully!""")
+
+                        # Check if 'RESET' is current job
+                        if job.name == "RESET":
+                            # Ensure 'RESET' does not set job_executed to True
+                            job_executed = False
+
+                        # A job completed successfully
+                        else:
+                            # Break from for loop and start again from beginning
+                            break
 
                 # Update last job and server last_run_times
-                self.last_run_time = server_time
+                self.last_run_time = self.get_server_time()
 
             # Wait 2 seconds between job iterations if no job was executed
             if job_executed is True:
@@ -191,6 +198,9 @@ class ClickerBot:
 
             # If trigger is overridden generate generic trigger at [0, 0]
             else:
+                # Set event_executed to True if trigger is overridden
+                event_executed = True
+
                 # Create generic trigger hits
                 trigger_hits = [[0, 0]]
 
@@ -239,8 +249,9 @@ class ClickerBot:
         start = action.coords[0]
         end = action.coords[1]
         for i in range(action.repeat):
-            command = f"input touchscreen swipe {
-                start.x} {start.y} {end.x} {end.y} {100 + random.randint(0, 50)}"
+            command = f"""input touchscreen swipe {
+                start.x} {start.y} {end.x} {end.y} {
+                    100 + random.randint(0, 50)}"""
             self.send_adb(command)
             time.sleep(action.click_delay)
             random_sleep(1)
@@ -290,6 +301,7 @@ class ClickerBot:
         status_dict['is first lady'] = all(
             [self.is_first_lady, self.ADB.is_game_running()])
         status_dict['game running'] = self.ADB.is_game_running()
+        status_dict['bot running'] = self.running
 
         status = "\n".join([f"{key.upper()} : {str(value).upper()}" for key,
                             value in status_dict.items()])
