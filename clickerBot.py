@@ -23,6 +23,7 @@ class ClickerBot:
         self.running = True
         self.is_first_lady = True
         self.time_offset = startup_data['time_offset']
+        self.idle_timeout = startup_data.get('idle_timeout') or 10
         self.thread = None
         self.status = self.get_status()
         self.game_name = 'com.fun.lastwar.gp'
@@ -84,9 +85,9 @@ class ClickerBot:
                     # Exit for loop and restart job
                     break
 
-                if (job.name == "FIRST LADY" and
+                if (job.name == "FIRST LADY" and job.run_count > 0 and
                         (job.last_run <= self.get_server_time()
-                         - datetime.timedelta(minutes=10))):
+                         - datetime.timedelta(minutes=self.idle_timeout))):
                     self.restart_game()
 
                 if self.running is False:
