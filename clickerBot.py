@@ -29,6 +29,44 @@ class ClickerBot:
         self.game_name = 'com.fun.lastwar.gp'
         self.click_thread = None
 
+    def check_relogin_window(self):
+        # Check if the game is still running on the device
+        event_dict = {
+            "description": "Check for re-login popup",
+            "trigger": {
+                "area": [
+                    570,
+                    965,
+                    980,
+                    1092],
+                "color": [
+                    [89, 222, 200],
+                    [180, 255, 255]],
+                "min_size": 35000,
+            },
+            "action": {
+                "description": "Dismiss popup",
+                "coords": [
+                    0,
+                    0
+                ],
+                "repeat": 2,
+                "delay": 1,
+                "action_type": "key",
+                "click_delay": 0.2
+            },
+            "events": None,
+        }
+
+        close_relogin = Event(event_dict)
+
+        if self.trigger_found(close_relogin.trigger):
+            login_job = Job({"name": "Re-login window closed",
+                            "description": "Close the re-login popup window", "events": []})
+            login_job.last_run += datetime.timedelta(days=1)
+            self.insert_job(login_job)
+            self.execute_action(close_relogin.action)
+
     def reload_jobs(self, filename: str = 'actual.json'):
         with open(filename, 'r') as f:
             json_file = json.load(f)
@@ -189,7 +227,11 @@ class ClickerBot:
                 - datetime.timedelta(hours=event.run_interval)):
             return False
 
+        # Set event_executed to False as default
         event_executed = False
+
+        # Check for 're-login' popup
+        self.check_relogin_window()
 
         # Check if event has trigger
         if event.trigger is not None:
@@ -278,6 +320,9 @@ class ClickerBot:
         # Check if current action is disabled in JSON
         if action.skip is True:
             return
+
+        # Check for 're-login' popup
+        self.check_relogin_window()
 
         if trigger_hits is None:
             trigger_hits = [[0, 0]]
@@ -485,7 +530,8 @@ def load_job_logic(logic_file: str):
 
 
 def random_sleep(max_time: int = 2) -> None:
-    time.sleep(random.random() * max_time)
+    TIME_MULTIPLIER = random.random() * 5
+    time.sleep(random.random() * max_time * TIME_MULTIPLIER)
 
 
 def main():
