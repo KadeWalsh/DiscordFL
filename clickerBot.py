@@ -126,6 +126,7 @@ class ClickerBot:
                 if (job.name == "FIRST LADY" and job.run_count > 1 and
                         (job.last_run <= self.get_server_time()
                          - datetime.timedelta(minutes=self.idle_timeout))):
+                    job.run_count = 0
                     self.restart_game()
 
                 if self.running is False:
@@ -157,6 +158,9 @@ class ClickerBot:
                             if job.name != "RESET":
                                 job_executed = True
 
+                            # Add job to database
+                            DB.insert_job(job)
+
                         random_sleep(2)
 
                     # Increment run count for job
@@ -168,8 +172,8 @@ class ClickerBot:
                         job.last_run = self.get_server_time()
 
                         # If job was not 'RESET' then add job to database
-                        if job.name != "RESET":
-                            DB.insert_job(job)
+                        # if job.name != "RESET":
+                        #     DB.insert_job(job)
 
                         # Log job execution to console if desired for testing
                         # print(f"""{formatted_time}  --  {
@@ -190,7 +194,7 @@ class ClickerBot:
 
             # Wait 2 seconds between job iterations if no job was executed
             if job_executed is True:
-                random_sleep(20)
+                random_sleep(5)
 
     def start(self, job_list: list[Job] = [None]):
         print("Starting ClickerBot...")
@@ -199,7 +203,11 @@ class ClickerBot:
             self.click_thread = Thread(target=self.run_jobs, args=(job_list,))
             self.click_thread.start()
 
-        print("ClickerBot started.")
+        startup = Job(
+            {"name": "BOT STARTED", "description": "Bot startup marker", "events": []})
+        startup.last_run = self.get_server_time()
+
+        DB.insert_job(startup)
 
     def stop(self):
         self.running = False
@@ -530,8 +538,8 @@ def load_job_logic(logic_file: str):
 
 
 def random_sleep(max_time: int = 2) -> None:
-    TIME_MULTIPLIER = random.random() * 5
-    time.sleep(random.random() * max_time * TIME_MULTIPLIER)
+    TIME_MULTIPLIER = random.random() + 1
+    time.sleep(max_time * TIME_MULTIPLIER)
 
 
 def main():

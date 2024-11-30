@@ -1,5 +1,6 @@
 import sqlite3
 from classes import Job
+import datetime
 
 DB_FILE = 'FL_BOT.db'
 conn = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -20,10 +21,13 @@ def create_tables():
 
 
 def insert_job(job: Job, conn=conn):
+    current_time = datetime.datetime.now(
+        datetime.timezone.utc) + datetime.timedelta(hours=-2)
+    current_time.replace(tzinfo=None)
     cur.execute('''INSERT INTO jobs (name, description, last_run)
                     VALUES (?,?,?)''', (job.name,
                                         job.description,
-                                        job.last_run))
+                                        current_time))
 
     conn.commit()
 
