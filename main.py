@@ -3,7 +3,7 @@ import json
 from clickerBot import ClickerBot
 from discordBot import DiscordBot
 from database import create_tables
-
+import database as DB
 DEFAULT_JSON = "actual.json"
 
 
@@ -13,6 +13,9 @@ class MainBot:
         # Load configuration
         startup_data = self.load_startup_data(config_filename)
         settings = startup_data['settings']
+
+        # Delete all old database data
+        DB.clear_old_data()
 
         # Initialize bots
         self.clicker = ClickerBot(settings['clicker'])
