@@ -32,4 +32,23 @@ def insert_job(job: Job, conn=conn):
     conn.commit()
 
 
+def clear_old_data():
+    query = """
+        DELETE FROM jobs
+        WHERE ID < (
+            SELECT MAX(ID) 
+            FROM jobs 
+            WHERE name = 'BOT STARTED'
+        );
+    """
+    cur.execute(query)
+    conn.commit()
+
+
+def clear_table():
+    query = "DELETE FROM jobs;"
+    cur.execute(query)
+    conn.commit()
+
+
 create_tables()
