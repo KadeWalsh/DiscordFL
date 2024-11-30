@@ -62,7 +62,8 @@ class ClickerBot:
 
         if self.trigger_found(close_relogin.trigger):
             login_job = Job({"name": "Re-login window closed",
-                            "description": "Close the re-login popup window", "events": []})
+                            "description": "Close the re-login popup window",
+                             "events": []})
             login_job.last_run += datetime.timedelta(days=1)
             self.insert_job(login_job)
             self.execute_action(close_relogin.action)
@@ -93,8 +94,10 @@ class ClickerBot:
                 return True
 
             current_time = self.get_server_time()
+            random_interval = job.run_interval + \
+                (random.random() * job.run_interval)
             run_after = (job.last_run +
-                         datetime.timedelta(hours=job.run_interval))
+                         datetime.timedelta(hours=random_interval))
 
             return current_time > run_after
 
@@ -128,6 +131,7 @@ class ClickerBot:
                          - datetime.timedelta(minutes=self.idle_timeout))):
                     job.run_count = 0
                     self.restart_game()
+                    break
 
                 if self.running is False:
                     reset = job_list[0]
@@ -204,7 +208,9 @@ class ClickerBot:
             self.click_thread.start()
 
         startup = Job(
-            {"name": "BOT STARTED", "description": "Bot startup marker", "events": []})
+            {"name": "BOT STARTED",
+             "description": "Bot startup marker",
+             "events": []})
         startup.last_run = self.get_server_time()
 
         DB.insert_job(startup)
@@ -485,7 +491,7 @@ class ClickerBot:
 
     def restart_game(self):
         self.ADB.stop_game(self.game_name)
-        time.sleep(5)
+        time.sleep(2)
         self.ensure_game_running()
         time.sleep(10)
         self.start()
