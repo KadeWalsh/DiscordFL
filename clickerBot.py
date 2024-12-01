@@ -90,6 +90,9 @@ class ClickerBot:
         if job.skip is True:
             return False
 
+        random_interval = job.run_interval + \
+            (random.random() * job.run_interval)
+
         run_after = (job.last_run +
                      datetime.timedelta(hours=random_interval))
 
@@ -563,7 +566,7 @@ def random_sleep(max_time: int = 2) -> None:
 def main():
     logic = load_job_logic(TEST_JSON)
     bot = ClickerBot(logic)
-
+    bot.start()
     while True:
         time.sleep(1)
 

@@ -14,8 +14,11 @@ class MainBot:
         startup_data = self.load_startup_data(config_filename)
         settings = startup_data['settings']
 
-        # Delete all old database data
-        DB.clear_old_data()
+        CLEAR_OLD_DATA = False
+
+        if CLEAR_OLD_DATA is True:
+            # Delete all old database data
+            DB.clear_old_data()
 
         # Initialize bots
         self.clicker = ClickerBot(settings['clicker'])
