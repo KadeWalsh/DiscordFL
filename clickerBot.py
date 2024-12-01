@@ -90,6 +90,9 @@ class ClickerBot:
         if job.skip is True:
             return False
 
+        run_after = (job.last_run +
+                     datetime.timedelta(hours=random_interval))
+
         if job.daily_limit is None:
             if job.run_interval is None or job.run_interval == 0:
                 return True
@@ -103,7 +106,9 @@ class ClickerBot:
             return current_time > run_after
 
         else:
-            return job.daily_limit > job.run_count
+            conditions = [job.daily_limit > job.run_count,
+                          self.get_server_time() > run_after]
+            return all(conditions)
 
     def run_jobs(self, job_list=None):
         if job_list is None or job_list == [None]:
@@ -188,7 +193,6 @@ class ClickerBot:
 
                         # A job completed successfully
                         else:
-                            print(f"Breaking after {job.name} completed")
                             # Break from for loop and start again
                             break
 

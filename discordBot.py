@@ -5,6 +5,8 @@ import json
 from clickerBot import ClickerBot
 import cv2
 from io import BytesIO
+import database as DB
+import datetime
 
 
 class DiscordBot:
@@ -128,6 +130,32 @@ class DiscordBot:
             except Exception as e:
                 await ctx.send(f"An error occurred: {e}")
 
+        @self.bot.command(name="stats",
+                          help="Get stats for the last hour")
+        async def stats(ctx):
+            server_time = self.clicker_bot.get_server_time()
+            query = """SELECT * FROM jobs WHERE last_run > ?"""
+            time_cutoff = server_time - datetime.timedelta(hours=1)
+            res = DB.cur.execute(query, [time_cutoff,])
+            results = res.fetchall()
+            job_stats = {}
+            SKIP_JOBS = ["RESET", "BOT STARTED"]
+
+            for job in results:
+                if job['name'] in SKIP_JOBS:
+                    continue
+
+                if job['name'] in job_stats:
+                    job_stats[job['name']] += 1
+
+                else:
+                    job_stats[job['name']] = 1
+
+            stat_string = "\n".join([f'{k} executed  {v} times'
+                                    for k, v in job_stats.items()])
+
+            await ctx.send(f"Stats for the last hour: \n{stat_string}")
+
     def run(self):
         """
         Starts the bot in the current thread.
@@ -142,6 +170,22 @@ class DiscordBot:
         bot_thread.start()
 
         self.thread = bot_thread
+
+
+def query_database(query: str, variables: list[str | int]) -> dict:
+    """
+    Execute a query against the database and return the results.
+
+    Args:
+        query (str): SQL query to execute
+
+    Returns:
+        dict: Result of the query
+    """
+    DB.cur.execute(query, variables)
+    results = DB.cur.fetchall()
+
+    return results
 
 
 # Main script to test the bot
