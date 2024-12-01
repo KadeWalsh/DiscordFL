@@ -14,20 +14,22 @@ def create_tables():
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     name TEXT NOT NULL,
                     description TEXT,
+                    job_ran BOOL NOT NULL,
                     last_run DATETIME
                     )''')
 
     conn.commit()
 
 
-def insert_job(job: Job, conn=conn):
+def insert_job(job: Job, job_executed: bool = False, conn=conn):
     current_time = datetime.datetime.now(
         datetime.timezone.utc) + datetime.timedelta(hours=-2)
     current_time.replace(tzinfo=None)
-    cur.execute('''INSERT INTO jobs (name, description, last_run)
-                    VALUES (?,?,?)''', (job.name,
-                                        job.description,
-                                        current_time))
+    cur.execute('''INSERT INTO jobs (name, description, job_ran, last_run)
+                    VALUES (?,?,?,?)''', (job.name,
+                                          job.description,
+                                          job_executed,
+                                          current_time))
 
     conn.commit()
 

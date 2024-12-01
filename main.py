@@ -21,6 +21,7 @@ class MainBot:
         self.clicker = ClickerBot(settings['clicker'])
         self.discordBot = DiscordBot(
             settings['discord'], clickerBot=self.clicker)
+        self.start_bots()
 
     def load_startup_data(self, filename):
         with open(filename, "r") as file:
@@ -45,7 +46,6 @@ class MainBot:
 def main(*args, **kwargs):
     create_tables()
     bot = MainBot(DEFAULT_JSON)
-    bot.start_bots()
 
 
 if __name__ == "__main__":
