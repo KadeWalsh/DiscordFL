@@ -61,6 +61,8 @@ class Action(CommonPrintFormat):
         self.click_delay = action_data['click_delay']
         self.variation = action_data.get('variation') or 0
         self.skip = action_data.get('skip') or False
+        if self.action_type == 'key':
+            self.keycode = action_data.get('keycode', None)
 
 
 class Event(CommonPrintFormat):
