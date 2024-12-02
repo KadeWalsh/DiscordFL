@@ -145,28 +145,9 @@ class DiscordBot:
         @self.bot.command(name="stats",
                           help="Get stats for the last hour")
         async def stats(ctx):
-            server_time = self.clicker_bot.get_server_time()
-            query = """SELECT * FROM jobs WHERE last_run > ?"""
-            time_cutoff = server_time - datetime.timedelta(hours=1)
-            res = DB.cur.execute(query, [time_cutoff,])
-            results = res.fetchall()
-            job_stats = {}
-            SKIP_JOBS = ["RESET", "BOT STARTED"]
+            stats = self.get_stats()
 
-            for job in results:
-                if job['name'] in SKIP_JOBS:
-                    continue
-
-                if job['name'] in job_stats:
-                    job_stats[job['name']] += 1
-
-                else:
-                    job_stats[job['name']] = 1
-
-            stat_string = "\n".join([f'{k} executed  {v} times'
-                                    for k, v in job_stats.items()])
-
-            await ctx.send(f"Stats for the last hour: \n{stat_string}")
+            await ctx.send(f"Stats for the last hour: \n{stats}")
 
     def run(self):
         """
@@ -182,6 +163,28 @@ class DiscordBot:
         bot_thread.start()
 
         self.thread = bot_thread
+
+    def get_stats(self):
+        server_time = self.clicker_bot.get_server_time()
+        query = """SELECT * FROM jobs WHERE last_run > ? AND job_ran = 1"""
+        time_cutoff = server_time - datetime.timedelta(hours=1)
+        res = DB.cur.execute(query, [time_cutoff,])
+        results = res.fetchall()
+        job_stats = {}
+        SKIP_JOBS = ["RESET", "BOT STARTED"]
+
+        for job in results:
+            if job['name'] in SKIP_JOBS:
+                continue
+
+            if job['name'] in job_stats:
+                job_stats[job['name']] += 1
+
+            else:
+                job_stats[job['name']] = 1
+
+        stat_string = "\n".join([f'{k} executed  {v} times'
+                                 for k, v in job_stats.items()])
 
 
 def query_database(query: str, variables: list[str | int]) -> dict:
