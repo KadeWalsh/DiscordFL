@@ -73,6 +73,7 @@ class Event(CommonPrintFormat):
         self.events = None
         if event.get('trigger') is not None:
             self.trigger = Trigger(event['trigger'])
+            self.trigger_type = event.get('trigger_type') or 'if'
         if event.get('action') is not None:
             self.action = Action(event['action'])
         if event.get('events') is not None:
