@@ -348,6 +348,8 @@ class ClickerBot:
     def execute_action(self,
                        action: Action,
                        trigger_hits: Coords) -> None:
+        while self.paused is True:
+            time.sleep(1)
         # Check if current action is disabled in JSON
         if action.skip is True:
             return
