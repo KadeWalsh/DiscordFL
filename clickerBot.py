@@ -268,12 +268,28 @@ class ClickerBot:
         if event.trigger is not None:
             # Check if trigger should be overridden or not
             if event.trigger.override is False:
-                # If trigger not overridden check for trigger
-                trigger_hits = self.trigger_found(event.trigger)
-                # Check for no matches
-                if trigger_hits is None:
-                    # Return flase for event_executed
-                    return False
+                if event.trigger_type == 'if':
+                    # If trigger not overridden check for trigger
+                    trigger_hits = self.trigger_found(event.trigger)
+
+                    # Check for no matches
+                    if trigger_hits is None:
+                        # Return flase for event_executed
+                        return False
+                elif event.trigger_type == 'while':
+                    while True:
+                        trigger_hits = self.trigger_found(event.trigger)
+
+                        if trigger_hits is None:
+                            break
+
+                        if event.action is not None:
+                            for hit in trigger_hits:
+                                self.execute_action(event.action, [hit])
+
+                                if event.events is not None:
+                                    for next_event in event.events:
+                                        self.execute_event(next_event)
 
                 else:
                     event_executed = True
