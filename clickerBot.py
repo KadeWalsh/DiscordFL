@@ -379,7 +379,7 @@ class ClickerBot:
                 self.send_drag(updated_action)
             # Check if action is a keypress
             elif action.action_type == "key":
-                KEY = action.get('keycode') or "KEYCODE_BACK"
+                KEY = action.keycode or "KEYCODE_BACK"
                 # Send key press to send_keypress function
                 self.ADB.execute_shell_command(f"input keyevent {KEY}")
 
