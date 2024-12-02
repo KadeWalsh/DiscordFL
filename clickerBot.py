@@ -19,6 +19,7 @@ IObuffer = BytesIO()
 class ClickerBot:
     def __init__(self, startup_data: json = TEST_JSON):
         self.setup_logic(startup_data['jobs'])
+        print(startup_data['settings'])
         self.ADB = ADBdevice(startup_data['settings'])
         self.running = True
         self.is_first_lady = True
@@ -29,6 +30,8 @@ class ClickerBot:
         self.click_thread = None
         self.current_job = None
         self.status = self.get_status()
+        # Add flag to enable pause/resume functionality mid-event loop
+        self.paused = False
 
     def check_relogin_window(self):
         # Check if the game is still running on the device
@@ -566,9 +569,9 @@ def random_sleep(max_time: int = 2) -> None:
 def main():
     logic = load_job_logic(TEST_JSON)
     bot = ClickerBot(logic)
-    bot.start()
-    while True:
-        time.sleep(1)
+    # bot.start()
+    # while True:
+    #     time.sleep(1)
 
 
 if __name__ == "__main__":

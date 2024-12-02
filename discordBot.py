@@ -50,6 +50,18 @@ class DiscordBot:
             self.clicker_bot.ensure_game_running()
             self.clicker_bot.start()
 
+        @self.bot.command(name="pause", help="Pauses the FL Bot")
+        async def pause(ctx):
+            await ctx.send(f"""FL Bot is paused, as requested by {
+                ctx.author.mention}!""")
+            self.clicker_bot.paused = True
+
+        @self.bot.command(name="resume", help="Pauses the FL Bot")
+        async def resume(ctx):
+            await ctx.send(f"""FL Bot has resumed duties, as requested by {
+                ctx.author.mention}!""")
+            self.clicker_bot.paused = False
+
         @self.bot.command(name="stop", help="Stops the FL Bot")
         async def stop(ctx):
             await ctx.send(f"""FL Bot is stopping, as requested by {
