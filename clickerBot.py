@@ -379,8 +379,9 @@ class ClickerBot:
                 self.send_drag(updated_action)
             # Check if action is a keypress
             elif action.action_type == "key":
+                KEY = action.get('keycode') or "KEYCODE_BACK"
                 # Send key press to send_keypress function
-                self.send_keypress(updated_action)
+                self.ADB.execute_shell_command(f"input keyevent {KEY}")
 
             # Wait for post-action delay as set in action
             time.sleep(action.delay)
