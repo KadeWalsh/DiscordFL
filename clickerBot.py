@@ -529,8 +529,8 @@ class ClickerBot:
         try:
             # Step 1: Construct the screenrecord command
             print("Starting screen recording via exec-out...")
-            record_cmd = f"screenrecord --time-limit {
-                duration} --output-format=h264"
+            record_cmd = f"""screenrecord --time-limit {
+                duration} --output-format=h264"""
 
             # Step 2: Execute the command and capture the video output
             video_data = self.ADB.device.exec_out(record_cmd)
