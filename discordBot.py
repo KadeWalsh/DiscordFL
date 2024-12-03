@@ -186,6 +186,8 @@ class DiscordBot:
         stat_string = "\n".join([f'{k} executed  {v} times'
                                  for k, v in job_stats.items()])
 
+        return stat_string
+
 
 def query_database(query: str, variables: list[str | int]) -> dict:
     """
