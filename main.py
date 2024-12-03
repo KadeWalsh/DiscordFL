@@ -5,6 +5,7 @@ from discordBot import DiscordBot
 from database import create_tables
 import database as DB
 DEFAULT_JSON = "actual.json"
+SCREENSHOT_ONLY = False
 
 
 class MainBot:
@@ -24,7 +25,10 @@ class MainBot:
         self.clicker = ClickerBot(settings['clicker'])
         self.discordBot = DiscordBot(
             settings['discord'], clickerBot=self.clicker)
-        self.start_bots()
+        if SCREENSHOT_ONLY is True:
+            self.clicker.capture_screenshot('profile_name.png')
+        else:
+            self.start_bots()
 
     def load_startup_data(self, filename):
         with open(filename, "r") as file:

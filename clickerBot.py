@@ -142,7 +142,7 @@ class ClickerBot:
                     # Exit for loop and restart job
                     break
 
-                if (job.name == "FIRST LADY" and job.run_count > 10 and
+                if (job.name == "FIRST LADY" and job.run_count > 5 and
                         (job.last_run <= self.get_server_time()
                          - datetime.timedelta(minutes=self.idle_timeout))):
                     job.run_count = 0
