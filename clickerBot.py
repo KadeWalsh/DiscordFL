@@ -149,7 +149,8 @@ class ClickerBot:
                     job.last_run = self.get_server_time()
                     self.restart_game()
                     need_reset = True
-                    print("FL Timeout triggered")
+                    print(f"""FL Timeout triggered.  Restarting game at {
+                          self.get_server_time()}.""")
                     break
 
                 if self.running is False:
@@ -179,7 +180,6 @@ class ClickerBot:
 
                         # Execute event and check if job returns True
                         if self.execute_event(event) is True:
-                            print(f"{job.name.upper()} executed!")
                             # set job_executed to true unless by RESET
                             if job.name != "RESET":
                                 need_reset = True
