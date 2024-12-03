@@ -179,6 +179,7 @@ class ClickerBot:
 
                         # Execute event and check if job returns True
                         if self.execute_event(event) is True:
+                            print(f"{job.name.upper()} executed!")
                             # set job_executed to true unless by RESET
                             if job.name != "RESET":
                                 need_reset = True
@@ -186,7 +187,7 @@ class ClickerBot:
                     # Add job to database
                     DB.insert_job(job, need_reset)
 
-                    random_sleep(2)
+                    random_sleep(1)
 
                     # Increment run count for job
                     job.run_count += 1
@@ -282,12 +283,17 @@ class ClickerBot:
                     if trigger_hits is None:
                         # Return flase for event_executed
                         return False
+                    else:
+                        event_executed = True
+
                 elif event.trigger_type == 'while':
                     while True:
                         trigger_hits = self.trigger_found(event.trigger)
 
                         if trigger_hits is None:
                             break
+                        else:
+                            event_executed = True
 
                         if event.action is not None:
                             for hit in trigger_hits:
