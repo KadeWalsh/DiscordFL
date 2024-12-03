@@ -96,7 +96,6 @@ class Job(CommonPrintFormat):
             self.events = None
 
         self.last_run = None
-        self.last_run.replace(tzinfo=None)
         self.daily_limit = job_data.get('daily_limit') or None
         self.run_count = 0
         self.run_interval = job_data.get('run_interval') or 0
