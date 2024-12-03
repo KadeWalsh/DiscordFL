@@ -93,6 +93,10 @@ class ClickerBot:
         if job.skip is True:
             return False
 
+        elif job.last_run is None:
+            job.last_run = self.get_server_time()
+            return True
+
         random_interval = job.run_interval + \
             (random.random() * job.run_interval)
 

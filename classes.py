@@ -95,8 +95,7 @@ class Job(CommonPrintFormat):
         else:
             self.events = None
 
-        self.last_run = (datetime.datetime.now() -
-                         datetime.timedelta(days=1))
+        self.last_run = None
         self.last_run.replace(tzinfo=None)
         self.daily_limit = job_data.get('daily_limit') or None
         self.run_count = 0
