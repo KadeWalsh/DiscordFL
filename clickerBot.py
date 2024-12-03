@@ -145,6 +145,7 @@ class ClickerBot:
                     job.last_run = self.get_server_time()
                     self.restart_game()
                     need_reset = True
+                    print("FL Timeout triggered")
                     break
 
                 if self.running is False:
