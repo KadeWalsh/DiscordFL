@@ -207,7 +207,7 @@ def query_database(query: str, variables: list[str | int]) -> dict:
 
 # Main script to test the bot
 if __name__ == "__main__":
-    with open('working.json', 'r') as f:
+    with open('actual.json', 'r') as f:
         settings = json.load(f)['settings']
 
     discord_settings = settings['discord']
