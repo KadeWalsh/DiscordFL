@@ -7,6 +7,7 @@ import cv2
 from io import BytesIO
 import database as DB
 import datetime
+import time
 
 
 class DiscordBot:
@@ -55,6 +56,15 @@ class DiscordBot:
             await ctx.send(f"""FL Bot is paused, as requested by {
                 ctx.author.mention}!""")
             self.clicker_bot.paused = True
+
+        @self.bot.command(name="restart", help="Pauses the FL Bot")
+        async def restart(ctx):
+            await ctx.send(f"""FL restarting, as requested by {
+                ctx.author.mention}...""")
+            self.clicker_bot.paused = True
+            self.clicker_bot.stop()
+            time.sleep(5)
+            self.clicker_bot.start()
 
         @self.bot.command(name="resume", help="Pauses the FL Bot")
         async def resume(ctx):
@@ -109,9 +119,9 @@ class DiscordBot:
             discord.app_commands.Choice(name="No", value="n"),
             discord.app_commands.Choice(name="Yes", value="y"),
         ])
-        @self.bot.command(name="restart",
+        @self.bot.command(name="reboot",
                           help="Restart the game on the host device")
-        async def restart(ctx):
+        async def reboot(ctx):
             await ctx.send("Attempting to kill game process...")
             self.clicker_bot.restart_game()
             await ctx.send("Game restarted successfully!")

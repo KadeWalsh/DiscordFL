@@ -218,6 +218,7 @@ class ClickerBot:
     def start(self, job_list: list[Job] = [None]):
         print("Starting ClickerBot...")
         self.running = True
+        self.paused = False
         if self.click_thread is None or self.click_thread.is_alive() is False:
             self.click_thread = Thread(target=self.run_jobs, args=(job_list,))
             self.click_thread.start()
