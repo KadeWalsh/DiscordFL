@@ -30,6 +30,7 @@ class ClickerBot:
         self.click_thread = None
         self.current_job = None
         self.status = self.get_status()
+
         # Add flag to enable pause/resume functionality mid-event loop
         self.paused = False
 
@@ -472,6 +473,7 @@ class ClickerBot:
         hit_list = [list(cv2.boundingRect(hit)) for hit
                     in all_contours
                     if cv2.contourArea(hit) > trigger.min_size]
+        # Print size of all contours if needed to determine min_size values
         # print(*[cv2.boundingRect(hit) for hit in all_contours])
         if len(hit_list) < 1:
             return None
@@ -600,9 +602,6 @@ def random_sleep(max_time: int = 2) -> None:
 def main():
     logic = load_job_logic(TEST_JSON)
     bot = ClickerBot(logic)
-    # bot.start()
-    # while True:
-    #     time.sleep(1)
 
 
 if __name__ == "__main__":
