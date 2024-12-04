@@ -216,10 +216,12 @@ class ClickerBot:
             # Wait a few seconds between job iterations
             random_sleep(5)
 
-    def start(self, job_list: list[Job] = [None]):
+    def start(self, job_list: list[Job] = None):
         print("Starting ClickerBot...")
         self.running = True
         self.paused = False
+        if job_list is None:
+            job_list = self.jobs
         if self.click_thread is None or self.click_thread.is_alive() is False:
             self.click_thread = Thread(target=self.run_jobs, args=(job_list,))
             self.click_thread.start()
@@ -522,15 +524,17 @@ class ClickerBot:
             # Restart normal jobs
             self.start()
 
+            return f"{buff_name.upper()} dismissed successfully!"
+
         # Check for empty buff name
         elif buff_name == '':
             # Exit function
-            return
+            return "Missing buff name.  Usage: '!dismiss <buff name>'"
 
         # Buff not found in JSON
         else:
             # Log error to console for debugging purposes
-            print(f"{buff_name.upper()} not found...")
+            return f"{buff_name.upper()} not found"
 
     def ensure_game_running(self):
         while self.ADB.is_game_running(self.game_name) is False:

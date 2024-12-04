@@ -105,6 +105,18 @@ class DiscordBot:
             await self.bot.tree.sync()
             await ctx.send('Command tree synced.')
 
+        @self.bot.command(name='dismiss',
+                          help='Sync all slash commands to the server')
+        async def dismiss(ctx, buff_name=None):
+            if buff_name is not None:
+                await ctx.send(f'''{buff_name} buff dismissal initiated by {
+                    ctx.author.mention}''')
+                dismissal_status = self.clicker_bot.dismiss_buff(buff_name)
+                await ctx.send(dismissal_status)
+            else:
+                await ctx.send("No buff name specified!  Usage: "
+                               "'!dissmiss <buff name>'")
+
         @self.bot.command(name='reload_jobs',
                           help='Reload job logic from file as hot reload')
         async def reload_jobs(ctx):
