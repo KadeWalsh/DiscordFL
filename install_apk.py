@@ -18,7 +18,7 @@ def install_apk(apk_filename):
         apk_filename (str): The name or path of the APK file to install
     """
     device = None
-    
+
     try:
         # Load the default ADB keys
         adbkey = os.path.expanduser('~/.android/adbkey')
@@ -31,7 +31,7 @@ def install_apk(apk_filename):
         host = str(ADB_SETTINGS["host"])  # Ensure host is a string
         port = int(ADB_SETTINGS["port"])  # Ensure port is an integer
         print(f"Attempting to connect to {host}:{port}")
-        
+
         device = AdbDeviceTcp(host=host, port=port)
         device.connect(rsa_keys=[signer], auth_timeout_s=10)
 
@@ -61,7 +61,8 @@ def install_apk(apk_filename):
 
     except FileNotFoundError as e:
         if 'adbkey' in str(e):
-            print("ADB key not found. Please ensure you have ADB set up with authentication.")
+            print("ADB key not found. Please ensure you have" +
+                  "ADB set up with authentication.")
         else:
             print(f"Error: {str(e)}")
     except Exception as e:

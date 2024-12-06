@@ -11,12 +11,13 @@ SCREENSHOT_ONLY = False
 class MainBot:
     def __init__(self,
                  discordConfig: str = "JSON/discord.json",
+                 clickerConnection: str = "JSON/connection.json",
                  clickerConfig: str = "JSON/clicker.json"):
 
         # Load configuration
         discordSettings = self.parseJson(discordConfig)
         clickerSettings = self.parseJson(clickerConfig)
-        clickerSettings['settings'] = self.parseJson('JSON/connection.json')
+        clickerSettings['settings'] = self.parseJson(clickerConnection)
 
         CLEAR_OLD_DATA = False
 
@@ -55,7 +56,7 @@ class MainBot:
 
 def main(*args, **kwargs):
     create_tables()
-    MainBot()
+    MainBot(clickerConnection="JSON/non_fl_connection.json")
 
 
 if __name__ == "__main__":
