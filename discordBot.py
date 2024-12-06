@@ -171,7 +171,7 @@ class DiscordBot:
 
             await ctx.send(f"Stats for the last hour: \n{stats}")
 
-        @bot.event
+        @self.bot.event
         async def on_member_join(member: discord.Member):
             # Get the first available text channel
             text_channels = member.guild.text_channels
