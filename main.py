@@ -16,6 +16,7 @@ class MainBot:
         # Load configuration
         discordSettings = self.parseJson(discordConfig)
         clickerSettings = self.parseJson(clickerConfig)
+        clickerSettings['settings'] = self.parseJson('JSON/connection.json')
 
         CLEAR_OLD_DATA = False
 

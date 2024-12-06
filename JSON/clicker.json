@@ -1,8 +1,4 @@
 {
-    "settings": {
-        "host": "192.168.0.198",
-        "port": 5655
-    },
     "time_offset": -2,
     "idle_timeout": 15,
     "jobs": [
