@@ -54,7 +54,7 @@ class MainBot:
 
 def main(*args, **kwargs):
     create_tables()
-    bot = MainBot("JSON/actual_discord.json")
+    MainBot()
 
 
 if __name__ == "__main__":

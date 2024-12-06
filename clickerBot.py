@@ -609,7 +609,7 @@ def random_sleep(max_time: int = 2) -> None:
 
 def main():
     logic = load_job_logic(TEST_JSON)
-    bot = ClickerBot(logic)
+    ClickerBot(logic)
 
 
 if __name__ == "__main__":
