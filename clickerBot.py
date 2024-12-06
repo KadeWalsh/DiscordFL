@@ -86,9 +86,12 @@ class ClickerBot:
 
     def check_new_day(self):
         if self.get_server_time().day != self.last_run_time.day:
+            server_time = self.get_server_time()
             for job in self.jobs:
                 job.run_count = 0
-            self.last_run_time = self.get_server_time()
+                job.last_run = server_time - \
+                    datetime.timedelta(hours=job.run_interval)
+            self.last_run_time = server_time
 
     def can_run(self, job: Job) -> bool:
         if job.skip is True:

@@ -171,6 +171,23 @@ class DiscordBot:
 
             await ctx.send(f"Stats for the last hour: \n{stats}")
 
+        @bot.event
+        async def on_member_join(member: discord.Member):
+            # Get the first available text channel
+            text_channels = member.guild.text_channels
+            if text_channels:  # Ensure there are text channels in the server
+                first_channel = text_channels[0]
+                # Send a welcome message
+                await first_channel.send(
+                    f"Welcome {member.mention} 🎉!"
+                )
+                # Split message into 2 parts
+                message = "If you are curious what I can currently do, " +\
+                    "please use the '!help' command to see the full " +\
+                    "list of options!"
+                # Recombine parts and send to channel
+                await first_channel.send(message)
+
     def run(self):
         """
         Starts the bot in the current thread.
