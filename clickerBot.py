@@ -17,14 +17,15 @@ IObuffer = BytesIO()
 
 
 class ClickerBot:
-    def __init__(self, startup_data: json = TEST_JSON):
-        self.setup_logic(startup_data['jobs'])
-        print(startup_data['settings'])
-        self.ADB = ADBdevice(startup_data['settings'])
+    def __init__(self, clicker_settings: json = TEST_JSON):
+        print(clicker_settings.keys())
+        self.setup_logic(clicker_settings['jobs'])
+        # print(clicker_settings['settings'])
+        self.ADB = ADBdevice(clicker_settings['settings'])
         self.running = True
         self.is_first_lady = True
-        self.time_offset = startup_data['time_offset']
-        self.idle_timeout = startup_data.get('idle_timeout') or 10
+        self.time_offset = clicker_settings['time_offset']
+        self.idle_timeout = clicker_settings.get('idle_timeout') or 10
         self.thread = None
         self.game_name = 'com.fun.lastwar.gp'
         self.click_thread = None

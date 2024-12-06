@@ -4,16 +4,18 @@ from clickerBot import ClickerBot
 from discordBot import DiscordBot
 from database import create_tables
 import database as DB
-DEFAULT_JSON = "actual.json"
+
 SCREENSHOT_ONLY = False
 
 
 class MainBot:
-    def __init__(self, config_filename: str = "working.json"):
+    def __init__(self,
+                 discordConfig: str = "JSON/discord.json",
+                 clickerConfig: str = "JSON/clicker.json"):
 
         # Load configuration
-        startup_data = self.load_startup_data(config_filename)
-        settings = startup_data['settings']
+        discordSettings = self.parseJson(discordConfig)
+        clickerSettings = self.parseJson(clickerConfig)
 
         CLEAR_OLD_DATA = False
 
@@ -22,15 +24,15 @@ class MainBot:
             DB.clear_old_data()
 
         # Initialize bots
-        self.clicker = ClickerBot(settings['clicker'])
+        self.clicker = ClickerBot(clickerSettings)
         self.discordBot = DiscordBot(
-            settings['discord'], clickerBot=self.clicker)
+            discordSettings, clickerBot=self.clicker)
         if SCREENSHOT_ONLY is True:
             self.clicker.capture_screenshot('profile_name.png')
         else:
             self.start_bots()
 
-    def load_startup_data(self, filename):
+    def parseJson(self, filename):
         with open(filename, "r") as file:
             return json.load(file)
 
@@ -52,7 +54,7 @@ class MainBot:
 
 def main(*args, **kwargs):
     create_tables()
-    bot = MainBot(DEFAULT_JSON)
+    bot = MainBot("JSON/actual_discord.json")
 
 
 if __name__ == "__main__":
