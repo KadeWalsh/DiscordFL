@@ -498,7 +498,7 @@ class ClickerBot:
         return self.ADB.capture_screenshot(filename)
 
     def load_dismiss_buff_logic(self) -> None:
-        buff_logic = 'buff_dismiss_logic.json'
+        buff_logic = 'JSON/buff_dismiss_logic.json'
         with open(buff_logic, 'r') as f:
             self.dismiss_buff_dict_list = json.load(f)['buffs']
 
