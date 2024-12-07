@@ -56,7 +56,7 @@ class MainBot:
 
 def main(*args, **kwargs):
     create_tables()
-    MainBot(clickerConnection="JSON/non_fl_connection.json")
+    MainBot(clickerConnection="JSON/connection.json")
 
 
 if __name__ == "__main__":
