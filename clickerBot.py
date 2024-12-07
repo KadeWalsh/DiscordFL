@@ -440,7 +440,10 @@ class ClickerBot:
         status_dict['game running'] = self.ADB.is_game_running()
         status_dict['bot running'] = self.running
         status_dict['paused'] = self.paused
-        status_dict['currently running'] = self.current_job.name or "None"
+        if self.current_job.name is not None:
+            status_dict['currently running'] = self.current_job.name
+        else:
+            status_dict['currently running'] = None
 
         status = "\n".join([f"{key.upper()} : {str(value).upper()}" for key,
                             value in status_dict.items()])
