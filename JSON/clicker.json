@@ -398,11 +398,11 @@
                                                     550,
                                                     1650
                                                 ],
-                                                "repeat": 6,
+                                                "repeat": 15,
                                                 "variation": 1,
                                                 "delay": 2,
                                                 "action_type": "drag",
-                                                "click_delay": 0.3
+                                                "click_delay": 1
                                             },
                                             "events": [
                                                 {
@@ -560,11 +560,11 @@
                                                     550,
                                                     1650
                                                 ],
-                                                "repeat": 5,
+                                                "repeat": 15,
                                                 "variation": 1,
                                                 "delay": 2,
                                                 "action_type": "drag",
-                                                "click_delay": 0.3
+                                                "click_delay": 1
                                             },
                                             "events": [
                                                 {
