@@ -104,7 +104,7 @@ class DiscordBot:
                 # Send the image via Discord
                 discord_file = discord.File(
                     fp=image_buffer, filename="image.png")
-                await ctx.send("Here is your image:", file=discord_file)
+                await ctx.send("Current screen view:", file=discord_file)
 
             except Exception as e:
                 await ctx.send(f"An error occurred: {e}")
