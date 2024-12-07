@@ -86,6 +86,29 @@ class DiscordBot:
 
             await ctx.send(status)
 
+            try:
+                screenshot = self.clicker_bot.ADB.capture_screenshot()
+
+                is_success, buffer = cv2.imencode(".png", screenshot)
+
+                if not is_success:
+                    await ctx.send("Failed to encode the image.")
+                    return
+
+                # Store image into BytesIO Buffer object in memory
+                image_buffer = BytesIO(buffer)
+
+                # Reset the buffer pointer to the beginning
+                image_buffer.seek(0)
+
+                # Send the image via Discord
+                discord_file = discord.File(
+                    fp=image_buffer, filename="image.png")
+                await ctx.send("Here is your image:", file=discord_file)
+
+            except Exception as e:
+                await ctx.send(f"An error occurred: {e}")
+
         @self.bot.command(name="start_game",
                           help="Start the game if not already running")
         async def start_game(ctx):
@@ -170,29 +193,6 @@ class DiscordBot:
             stats = self.get_stats()
 
             await ctx.send(f"Stats for the last hour: \n{stats}")
-
-            try:
-                screenshot = self.clicker_bot.ADB.capture_screenshot()
-
-                is_success, buffer = cv2.imencode(".png", screenshot)
-
-                if not is_success:
-                    await ctx.send("Failed to encode the image.")
-                    return
-
-                # Store image into BytesIO Buffer object in memory
-                image_buffer = BytesIO(buffer)
-
-                # Reset the buffer pointer to the beginning
-                image_buffer.seek(0)
-
-                # Send the image via Discord
-                discord_file = discord.File(
-                    fp=image_buffer, filename="image.png")
-                await ctx.send("Here is your image:", file=discord_file)
-
-            except Exception as e:
-                await ctx.send(f"An error occurred: {e}")
 
         @self.bot.event
         async def on_member_join(member: discord.Member):
