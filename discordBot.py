@@ -170,6 +170,7 @@ class DiscordBot:
             stats = self.get_stats()
 
             await ctx.send(f"Stats for the last hour: \n{stats}")
+            await screenshot(ctx)
 
         @self.bot.event
         async def on_member_join(member: discord.Member):

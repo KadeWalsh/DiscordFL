@@ -146,7 +146,8 @@ class ClickerBot:
                     time.sleep(30)
                     # Exit for loop and restart job
                     break
-
+                if job.name == "FIRST_LADY" and self.paused is True:
+                    job.last_run = self.get_server_time()
                 if (job.name == "FIRST LADY" and job.run_count > 5 and
                         (job.last_run <= self.get_server_time()
                          - datetime.timedelta(minutes=self.idle_timeout))):
@@ -173,7 +174,7 @@ class ClickerBot:
                 # Check if job eligible to be run
                 if self.can_run(job) is True:
                     # Update current_job name
-                    self.current_job = job.name
+                    self.current_job = job
 
                     # Print current time and job name to console
                     # print(f"Starting {job.name} Job...")
@@ -439,6 +440,7 @@ class ClickerBot:
             [self.is_first_lady, self.ADB.is_game_running()])
         status_dict['game running'] = self.ADB.is_game_running()
         status_dict['bot running'] = self.running
+        status_dict['paused'] = self.paused
         status_dict['currently running'] = self.current_job or "None"
 
         status = "\n".join([f"{key.upper()} : {str(value).upper()}" for key,
