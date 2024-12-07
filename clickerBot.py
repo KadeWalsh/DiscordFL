@@ -30,10 +30,9 @@ class ClickerBot:
         self.game_name = 'com.fun.lastwar.gp'
         self.click_thread = None
         self.current_job = None
-        self.status = self.get_status()
-
         # Add flag to enable pause/resume functionality mid-event loop
         self.paused = False
+        self.status = self.get_status()
 
     def check_relogin_window(self):
         # Check if the game is still running on the device
