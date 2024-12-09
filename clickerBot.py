@@ -34,6 +34,8 @@ class ClickerBot:
                                          settings for the clicker bot.
                                          Defaults to 'working.json'.
         """
+        # Sets the server time offset from GMT from the JSON file (GMT -2)
+        self.time_offset = clicker_settings['time_offset']
 
         self.setup_logic(clicker_settings['jobs'])
         # Gets and stores instance of the ADBdevice class
@@ -42,9 +44,6 @@ class ClickerBot:
         self.running = True
         # Not currently implemented but used to store flag for VP duties on/off
         self.is_first_lady = True
-
-        # Sets the server time offset from GMT from the JSON file (GMT -2)
-        self.time_offset = clicker_settings['time_offset']
 
         # Sets the timeout between VP sucessfully executing.
         # This helps prevent repeated failures by restarting the game
