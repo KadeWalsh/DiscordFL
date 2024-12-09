@@ -18,9 +18,7 @@ IObuffer = BytesIO()
 
 class ClickerBot:
     def __init__(self, clicker_settings: json = TEST_JSON):
-        print(clicker_settings.keys())
         self.setup_logic(clicker_settings['jobs'])
-        # print(clicker_settings['settings'])
         self.ADB = ADBdevice(clicker_settings['settings'])
         self.running = True
         self.is_first_lady = True
@@ -30,8 +28,10 @@ class ClickerBot:
         self.game_name = 'com.fun.lastwar.gp'
         self.click_thread = None
         self.current_job = None
+
         # Add flag to enable pause/resume functionality mid-event loop
         self.paused = False
+
         self.status = self.get_status()
 
     def check_relogin_window(self):
