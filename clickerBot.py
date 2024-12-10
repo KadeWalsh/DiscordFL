@@ -465,7 +465,7 @@ class ClickerBot:
         event_executed = False
 
         # Check for 're-login' popup
-        self.check_relogin_window()
+        # self.check_relogin_window()
 
         # Check if event has trigger
         if event.trigger is not None:

@@ -369,10 +369,10 @@
                                             "description": "Check for full page of applications",
                                             "trigger": {
                                                 "area": [
-                                                    767,
-                                                    1500,
-                                                    850,
-                                                    1690
+                                                    740,
+                                                    1520,
+                                                    825,
+                                                    1600
                                                 ],
                                                 "color": [
                                                     [
@@ -386,7 +386,7 @@
                                                         255
                                                     ]
                                                 ],
-                                                "min_size": 3000,
+                                                "min_size": 5500,
                                                 "type": "static",
                                                 "ref_img": null
                                             },
@@ -531,10 +531,10 @@
                                             "description": "Check for full page of applications",
                                             "trigger": {
                                                 "area": [
-                                                    767,
-                                                    1580,
-                                                    850,
-                                                    1660
+                                                    740,
+                                                    1520,
+                                                    825,
+                                                    1600
                                                 ],
                                                 "color": [
                                                     [
@@ -548,7 +548,7 @@
                                                         255
                                                     ]
                                                 ],
-                                                "min_size": 3000,
+                                                "min_size": 5500,
                                                 "type": "static",
                                                 "ref_img": null
                                             },
