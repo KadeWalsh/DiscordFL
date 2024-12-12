@@ -221,13 +221,16 @@ class ClickerBot:
             return all(conditions)
 
     def restart_needed(self):
+        restart_variation = 1
+        print(f"""Restart due after {self.restart_time.strftime(
+            "%H:%M:%S")}""")
         if self.restart_time < self.get_server_time():
             restart_needed = True
             while restart_needed is True:
                 self.restart_game()
                 self.ensure_game_running()
                 now = self.get_server_time()
-                random_interval = random.random() * 3
+                random_interval = random.random() * restart_variation
                 self.restart_time = now + datetime.timedelta(
                     minutes=self.idle_timeout + random_interval)
 
