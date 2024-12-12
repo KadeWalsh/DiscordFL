@@ -71,7 +71,7 @@ class ClickerBot:
             minutes=self.idle_timeout + (3 * random.random()))
 
         # Set initial restart time
-        self.restart_time = now + restart_delay()
+        self.restart_time = now + restart_delay
 
     def check_relogin_window(self):
         """
