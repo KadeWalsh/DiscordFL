@@ -61,7 +61,7 @@ class ClickerBot:
         # Add flag to enable pause/resume functionality mid-event loop
         self.paused = False
 
-        # Allows "!status" to call the get_status() function via Discord command
+        # Allows "!status" to call the get_status() function via slash command
         self.status = self.get_status()
 
         self.set_restart_time()
@@ -962,8 +962,13 @@ class ClickerBot:
         """
             Check Android device list of running processes for game process
         """
+        start_time = self.get_server_time()
         # Runs ADB.is_game_running() function until it finds the game process
         while self.ADB.is_game_running(self.game_name) is False:
+            if self.get_server_time() > start_time + datetime.timedelta(
+                    minutes=2):
+                self.ADB.stop_game(self.game_name)
+                time.sleep(1)
             # Game is not running, so start the game process
             self.ADB.start_game(self.game_name)
             # Wait 10 seconds before checking game status again
