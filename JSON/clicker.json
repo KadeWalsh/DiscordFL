@@ -1,6 +1,6 @@
 {
     "time_offset": -2,
-    "idle_timeout": 2,
+    "idle_timeout": 15,
     "jobs": [
         {
             "name": "RESET",

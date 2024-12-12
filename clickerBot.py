@@ -64,11 +64,13 @@ class ClickerBot:
         # Allows "status" to call the get_status() function via Discord command
         self.status = self.get_status()
 
+    def set_restart_time(self):
+        restart_variation = 5
         now = self.get_server_time()
 
         # Create restart timedelta to control restart interval
         restart_delay = datetime.timedelta(
-            minutes=self.idle_timeout + (3 * random.random()))
+            minutes=self.idle_timeout + (restart_variation * random.random()))
 
         # Set initial restart time
         self.restart_time = now + restart_delay
@@ -221,7 +223,6 @@ class ClickerBot:
             return all(conditions)
 
     def restart_needed(self):
-        restart_variation = 1
         print(f"""Restart due after {self.restart_time.strftime(
             "%H:%M:%S")}""")
         if self.restart_time < self.get_server_time():
@@ -229,10 +230,7 @@ class ClickerBot:
             while restart_needed is True:
                 self.restart_game()
                 self.ensure_game_running()
-                now = self.get_server_time()
-                random_interval = random.random() * restart_variation
-                self.restart_time = now + datetime.timedelta(
-                    minutes=self.idle_timeout + random_interval)
+                self.set_restart_time()
 
                 return True
 
