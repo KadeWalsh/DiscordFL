@@ -228,6 +228,7 @@ class ClickerBot:
         need_reset = True
 
         # Create bot loop
+        self.last_run_time = self.get_server_time()
         while self.running is True:
             # Iterate through jobs
             for job in job_list:
