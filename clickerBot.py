@@ -964,17 +964,33 @@ class ClickerBot:
         # Stop the ClickerBot thread
         self.stop()
 
-        # Kills the game if running
-        self.ADB.stop_game(self.game_name)
+        # Set running flag to default of false
+        running = False
 
-        # Short delay
-        time.sleep(2)
+        # Set time variables
+        timeout_time = datetime.timedelta(minutes=2)
 
-        # Restarts the game
-        self.ensure_game_running()
+        # Start loop
+        while True:
+            # Set time for start of current iteration
+            start_time = datetime.datetime.now()
+            # Kills the game if running
+            self.ADB.stop_game(self.game_name)
 
-        # Wait 10 seconds before starting the ClickerBot
-        time.sleep(10)
+            # Short delay
+            time.sleep(1)
+
+            # Start checking if game is running
+            while datetime.datetime.now() - timeout_time <= start_time:
+                if self.ensure_game_running() is True:
+                    running = True
+                    break
+
+                else:
+                    # Wait 10 seconds before starting the ClickerBot
+                    time.sleep(10)
+            if running is True:
+                break
 
         # Restart the ClickerBot
         self.start()
