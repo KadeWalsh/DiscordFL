@@ -64,6 +64,8 @@ class ClickerBot:
         # Allows "status" to call the get_status() function via Discord command
         self.status = self.get_status()
 
+        self.set_restart_time()
+
     def set_restart_time(self):
         restart_variation = 5
         now = self.get_server_time()
