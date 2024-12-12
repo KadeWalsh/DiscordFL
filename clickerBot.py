@@ -64,6 +64,15 @@ class ClickerBot:
         # Allows "status" to call the get_status() function via Discord command
         self.status = self.get_status()
 
+        now = self.get_server_time()
+
+        # Create restart timedelta to control restart interval
+        restart_delay = datetime.timedelta(
+            minutes=self.idle_timeout + (3 * random.random()))
+
+        # Set initial restart time
+        self.restart_time = now + restart_delay()
+
     def check_relogin_window(self):
         """
             Currently hard-coded, should be moved to JSON file later.
@@ -211,18 +220,17 @@ class ClickerBot:
             # Return True if all conditions are met, otherwise False
             return all(conditions)
 
-    def check_restart(self):
-        now = self.get_server_time()
-        # Create restart timedelta to control restart interval
-        restart_delay = datetime.timedelta(
-            minutes=self.idle_timeout + (3 * random.random()))
-
-        # start looping
-        if self.last_run_time <= now - restart_delay:
+    def restart_needed(self):
+        if self.restart_time < self.get_server_time():
             restart_needed = True
             while restart_needed is True:
                 self.restart_game()
                 self.ensure_game_running()
+                now = self.get_server_time()
+                random_interval = random.random() * 3
+                self.restart_time = now + datetime.timedelta(
+                    minutes=self.idle_timeout + random_interval)
+
                 return True
 
         else:
@@ -250,7 +258,7 @@ class ClickerBot:
             # Iterate through jobs
             for job in job_list:
                 # Check if due for restart
-                if self.check_restart() is True:
+                if self.restart_needed() is True:
                     break
 
                 # Update last_run_time
