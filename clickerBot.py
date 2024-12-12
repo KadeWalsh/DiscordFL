@@ -231,6 +231,18 @@ class ClickerBot:
         while self.running is True:
             # Iterate through jobs
             for job in job_list:
+                # Get current server time
+                now = self.get_server_time()
+                # Create restart timedelta to control restart interval
+                restart_delay = datetime.timedelta(
+                    minutes=self.idle_timeout + (5 * (random.random() + 1)))
+
+                # Check is restart interval has been reached
+                if self.last_run_time > now - restart_delay:
+                    self.restart_game()
+                    self.last_run_time = now
+                    break
+
                 # Update last_run_time
                 self.last_run_time = self.get_server_time()
 
