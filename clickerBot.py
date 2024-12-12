@@ -222,8 +222,11 @@ class ClickerBot:
             restart_needed = True
             while restart_needed is True:
                 self.restart_game()
+                self.ensure_game_running()
+                return True
 
-        return
+        else:
+            return False
 
     def run_jobs(self, job_list=None):
         """
@@ -247,7 +250,8 @@ class ClickerBot:
             # Iterate through jobs
             for job in job_list:
                 # Check if due for restart
-                self.check_restart()
+                if self.check_restart() is True:
+                    break
 
                 # Update last_run_time
                 self.last_run_time = self.get_server_time()
