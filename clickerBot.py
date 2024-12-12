@@ -1001,6 +1001,10 @@ class ClickerBot:
         while True:
             # Set time for start of current iteration
             start_time = datetime.datetime.now()
+
+            # Log timestamp before initiating restart
+            start_time_str = start_time.strftime("%H:%M:%S")
+            print(f"[{start_time_str}] Initiating restart...")
             # Kills the game if running
             self.ADB.stop_game(self.game_name)
 
@@ -1018,6 +1022,10 @@ class ClickerBot:
                     time.sleep(10)
             if running is True:
                 break
+
+            cur_time = self.get_server_time()
+            cur_time_str = cur_time.strftime("%H:%M:%S")
+            print(f"Restart completed at {cur_time_str}")
 
         # Restart the ClickerBot
         self.start()
