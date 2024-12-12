@@ -239,7 +239,7 @@ class ClickerBot:
                     minutes=self.idle_timeout + (5 * (random.random() + 1)))
 
                 # Check is restart interval has been reached
-                if self.last_run_time > now - restart_delay:
+                if self.last_run_time <= now - restart_delay:
                     self.restart_game()
                     self.last_run_time = now
                     break
