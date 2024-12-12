@@ -61,7 +61,7 @@ class ClickerBot:
         # Add flag to enable pause/resume functionality mid-event loop
         self.paused = False
 
-        # Allows "status" to call the get_status() function via Discord command
+        # Allows "!status" to call the get_status() function via Discord command
         self.status = self.get_status()
 
         self.set_restart_time()
