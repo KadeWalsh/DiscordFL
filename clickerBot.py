@@ -77,6 +77,9 @@ class ClickerBot:
         # Set initial restart time
         self.restart_time = now + restart_delay
 
+        print(f"""Restart due after {self.restart_time.strftime(
+            "%H:%M:%S")}""")
+
     def check_relogin_window(self):
         """
             Currently hard-coded, should be moved to JSON file later.
@@ -225,8 +228,6 @@ class ClickerBot:
             return all(conditions)
 
     def restart_needed(self):
-        print(f"""Restart due after {self.restart_time.strftime(
-            "%H:%M:%S")}""")
         if self.restart_time < self.get_server_time():
             restart_needed = True
             while restart_needed is True:
