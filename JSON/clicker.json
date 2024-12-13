@@ -415,11 +415,11 @@
                                                             810,
                                                             425
                                                         ],
-                                                        "repeat": 15,
+                                                        "repeat": 30,
                                                         "variation": 3,
                                                         "delay": 1,
                                                         "action_type": "click",
-                                                        "click_delay": 0.075
+                                                        "click_delay": 0.1
                                                     },
                                                     "events": null
                                                 }
@@ -578,11 +578,11 @@
                                                             810,
                                                             425
                                                         ],
-                                                        "repeat": 15,
+                                                        "repeat": 30,
                                                         "variation": 3,
                                                         "delay": 1,
                                                         "action_type": "click",
-                                                        "click_delay": 0.075
+                                                        "click_delay": 0.1
                                                     },
                                                     "events": null
                                                 }
