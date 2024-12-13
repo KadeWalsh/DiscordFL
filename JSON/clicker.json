@@ -387,6 +387,7 @@
                                                     ]
                                                 ],
                                                 "min_size": 5500,
+                                                "override": false,
                                                 "type": "static",
                                                 "ref_img": null
                                             },
@@ -402,7 +403,7 @@
                                                 "variation": 1,
                                                 "delay": 2,
                                                 "action_type": "drag",
-                                                "click_delay": 1
+                                                "click_delay": 0.05
                                             },
                                             "events": [
                                                 {
@@ -549,6 +550,7 @@
                                                     ]
                                                 ],
                                                 "min_size": 5500,
+                                                "override": false,
                                                 "type": "static",
                                                 "ref_img": null
                                             },
@@ -564,7 +566,7 @@
                                                 "variation": 1,
                                                 "delay": 2,
                                                 "action_type": "drag",
-                                                "click_delay": 1
+                                                "click_delay": 0.05
                                             },
                                             "events": [
                                                 {

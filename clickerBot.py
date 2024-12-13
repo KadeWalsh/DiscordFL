@@ -561,6 +561,8 @@ class ClickerBot:
 
             # Check for event action
             if event.action is not None:
+                if trigger_hits is None:
+                    trigger_hits = [None]
                 # For each hit found (multiple hits can be found)
                 for hit in trigger_hits:
                     # Execute action for each hit
@@ -670,7 +672,7 @@ class ClickerBot:
             # to reduce the appearance of any patterns
             command = f"""input touchscreen swipe {
                 start.x} {start.y} {end.x} {end.y} {
-                    100 + random.randint(0, 50)}"""
+                    300 + random.randint(0, 50)}"""
             # Send the drag command via ADB
             self.send_adb(command)
             # Add a small wait between commands being sent
