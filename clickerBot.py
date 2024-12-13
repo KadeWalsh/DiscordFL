@@ -232,7 +232,6 @@ class ClickerBot:
             restart_needed = True
             while restart_needed is True:
                 self.restart_game()
-                self.ensure_game_running()
                 self.set_restart_time()
 
                 return True
@@ -1000,7 +999,7 @@ class ClickerBot:
         # Start loop
         while True:
             # Set time for start of current iteration
-            start_time = datetime.datetime.now()
+            start_time = self.get_server_time()
 
             # Log timestamp before initiating restart
             start_time_str = start_time.strftime("%H:%M:%S")
